@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Olist E-Commerce Analysis — WAP 228</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:        #0d1117;
+      --surface:   #161b22;
+      --surface2:  #1c2330;
+      --border:    #30363d;
+      --text:      #e6edf3;
+      --muted:     #8b949e;
+      --blue:      #2C7BE5;
+      --red:       #E63757;
+      --green:     #00B887;
+      --gold:      #F6C90E;
+      --purple:    #9B59B6;
+      --accent:    #58a6ff;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Inter', sans-serif;
+      min-height: 100vh;
+    }
+
+    /* ── HEADER ── */
+    header {
+      background: linear-gradient(135deg, #0d1117 0%, #161b22 50%, #0d2137 100%);
+      border-bottom: 1px solid var(--border);
+      padding: 3rem 2rem 2.5rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    header::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: radial-gradient(ellipse 80% 60% at 50% 0%, rgba(44,123,229,.15), transparent);
+      pointer-events: none;
+    }
+    header .badge {
+      display: inline-block;
+      background: rgba(44,123,229,.15);
+      border: 1px solid rgba(44,123,229,.35);
+      color: var(--accent);
+      font-size: .75rem;
+      font-weight: 600;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      padding: .3rem .9rem;
+      border-radius: 2rem;
+      margin-bottom: 1.2rem;
+    }
+    header h1 {
+      font-size: clamp(1.8rem, 5vw, 3rem);
+      font-weight: 800;
+      background: linear-gradient(120deg, #e6edf3 30%, var(--accent));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: .6rem;
+    }
+    header p {
+      color: var(--muted);
+      font-size: 1rem;
+      max-width: 600px;
+      margin: 0 auto 1.5rem;
+      line-height: 1.6;
+    }
+    .header-meta {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      flex-wrap: wrap;
+      font-size: .8rem;
+      color: var(--muted);
+    }
+    .header-meta span { display: flex; align-items: center; gap: .4rem; }
+    .header-meta strong { color: var(--text); }
+
+    /* ── STATS GRID ── */
+    .stats-section {
+      max-width: 1200px;
+      margin: 2.5rem auto;
+      padding: 0 1.5rem;
+    }
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 1rem;
+    }
+    .stat-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.25rem 1.5rem;
+      position: relative;
+      overflow: hidden;
+      transition: transform .2s, border-color .2s;
+    }
+    .stat-card:hover { transform: translateY(-3px); border-color: var(--blue); }
+    .stat-card::after {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      background: var(--accent-color, var(--blue));
+      border-radius: 12px 12px 0 0;
+    }
+    .stat-card .icon { font-size: 1.6rem; margin-bottom: .6rem; }
+    .stat-card .value {
+      font-size: 1.7rem;
+      font-weight: 800;
+      color: var(--text);
+      line-height: 1;
+      margin-bottom: .3rem;
+    }
+    .stat-card .label { font-size: .78rem; color: var(--muted); }
+
+    /* ── SECTION TITLE ── */
+    .section-title {
+      max-width: 1200px;
+      margin: 3rem auto .8rem;
+      padding: 0 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: .8rem;
+    }
+    .section-title h2 {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--text);
+    }
+    .section-title::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--border);
+    }
+
+    /* ── CHART GRID ── */
+    .charts-grid {
+      max-width: 1200px;
+      margin: 0 auto 2rem;
+      padding: 0 1.5rem;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(520px, 1fr));
+      gap: 1.25rem;
+    }
+    .chart-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      overflow: hidden;
+      transition: transform .2s, box-shadow .2s, border-color .2s;
+    }
+    .chart-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 40px rgba(0,0,0,.4);
+      border-color: #30363d;
+    }
+    .chart-card.wide { grid-column: 1 / -1; }
+    .chart-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1rem 1.25rem .75rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .chart-header h3 { font-size: .95rem; font-weight: 600; }
+    .chart-tag {
+      font-size: .7rem;
+      font-weight: 600;
+      padding: .2rem .6rem;
+      border-radius: 1rem;
+      background: rgba(44,123,229,.15);
+      color: var(--accent);
+      border: 1px solid rgba(44,123,229,.25);
+    }
+    .chart-body img {
+      width: 100%;
+      display: block;
+    }
+    .chart-insight {
+      padding: .75rem 1.25rem;
+      font-size: .8rem;
+      color: var(--muted);
+      border-top: 1px solid var(--border);
+      line-height: 1.5;
+    }
+    .chart-insight strong { color: var(--accent); }
+
+    /* ── KEY FINDINGS ── */
+    .findings-grid {
+      max-width: 1200px;
+      margin: 0 auto 2rem;
+      padding: 0 1.5rem;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1rem;
+    }
+    .finding-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-left: 3px solid var(--accent-color, var(--blue));
+      border-radius: 10px;
+      padding: 1.1rem 1.25rem;
+    }
+    .finding-card .num {
+      font-size: .7rem;
+      font-weight: 700;
+      color: var(--accent-color, var(--blue));
+      text-transform: uppercase;
+      letter-spacing: .08em;
+      margin-bottom: .35rem;
+    }
+    .finding-card p { font-size: .88rem; line-height: 1.6; color: var(--muted); }
+    .finding-card p strong { color: var(--text); }
+
+    /* ── FOOTER ── */
+    footer {
+      text-align: center;
+      padding: 2rem 1.5rem;
+      border-top: 1px solid var(--border);
+      color: var(--muted);
+      font-size: .8rem;
+      margin-top: 2rem;
+    }
+    footer a { color: var(--accent); text-decoration: none; }
+    footer a:hover { text-decoration: underline; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 620px) {
+      .charts-grid { grid-template-columns: 1fr; }
+      .chart-card.wide { grid-column: 1; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ════════════════════ HEADER ════════════════════ -->
+<header>
+  <div class="badge">WAP 228 — Project 2</div>
+  <h1>Olist E-Commerce Analysis</h1>
+  <p>End-to-end data analysis of the Brazilian E-Commerce Public Dataset using Python, SQLite &amp; data visualization.</p>
+  <div class="header-meta">
+    <span>🏫 <strong>OSTIM Technical University</strong></span>
+    <span>📅 <strong>Deadline: June 23, 2026</strong></span>
+    <span>🗄️ <strong>SQLite + Python + GitHub</strong></span>
+  </div>
+</header>
+
+<!-- ════════════════════ STATS ════════════════════ -->
+<section class="stats-section">
+  <div class="stats-grid">
+    <div class="stat-card" style="--accent-color: var(--blue)">
+      <div class="icon">📦</div>
+      <div class="value">99,441</div>
+      <div class="label">Total Orders</div>
+    </div>
+    <div class="stat-card" style="--accent-color: var(--green)">
+      <div class="icon">👤</div>
+      <div class="value">99,441</div>
+      <div class="label">Unique Customers</div>
+    </div>
+    <div class="stat-card" style="--accent-color: var(--gold)">
+      <div class="icon">🏷️</div>
+      <div class="value">32,951</div>
+      <div class="label">Products</div>
+    </div>
+    <div class="stat-card" style="--accent-color: var(--red)">
+      <div class="icon">🏪</div>
+      <div class="value">3,095</div>
+      <div class="label">Active Sellers</div>
+    </div>
+    <div class="stat-card" style="--accent-color: var(--purple)">
+      <div class="icon">💳</div>
+      <div class="value">73.9%</div>
+      <div class="label">Credit Card Usage</div>
+    </div>
+    <div class="stat-card" style="--accent-color: var(--green)">
+      <div class="icon">⭐</div>
+      <div class="value">4.42★</div>
+      <div class="label">Fast Delivery Score</div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════ CHARTS ════════════════════ -->
+<div class="section-title"><h2>📊 Analysis Charts</h2></div>
+
+<div class="charts-grid">
+
+  <!-- Chart 1 — Full width -->
+  <div class="chart-card wide">
+    <div class="chart-header">
+      <h3>📈 Monthly Revenue &amp; Order Volume (2016–2018)</h3>
+      <span class="chart-tag">Time Series</span>
+    </div>
+    <div class="chart-body"><img src="charts/01_monthly_revenue.png" alt="Monthly Revenue" /></div>
+    <div class="chart-insight">
+      Revenue grew <strong>10×</strong> from Sep 2016 to Aug 2018. Clear <strong>Black Friday spike in Nov 2017</strong>.
+      Both revenue and order count move in near-perfect lockstep, indicating consistent average order value.
+    </div>
+  </div>
+
+  <!-- Chart 2 -->
+  <div class="chart-card">
+    <div class="chart-header">
+      <h3>🏆 Top 10 Product Categories</h3>
+      <span class="chart-tag">Revenue</span>
+    </div>
+    <div class="chart-body"><img src="charts/02_top_categories.png" alt="Top Categories" /></div>
+    <div class="chart-insight">
+      <strong>Beleza Saude (Health &amp; Beauty)</strong> leads at R$1.26M.
+      Top 5 categories account for ~42% of all platform revenue.
+    </div>
+  </div>
+
+  <!-- Chart 3 -->
+  <div class="chart-card">
+    <div class="chart-header">
+      <h3>🗺️ Sales by Brazilian State</h3>
+      <span class="chart-tag">Geographic</span>
+    </div>
+    <div class="chart-body"><img src="charts/03_sales_by_state.png" alt="Sales by State" /></div>
+    <div class="chart-insight">
+      <strong>São Paulo (SP)</strong> dominates with 41,125 orders — <strong>3× more than RJ</strong>.
+      Southeast region drives &gt;60% of all orders. North &amp; Northeast are untapped markets.
+    </div>
+  </div>
+
+  <!-- Chart 4 -->
+  <div class="chart-card">
+    <div class="chart-header">
+      <h3>💳 Payment Method Distribution</h3>
+      <span class="chart-tag">Preferences</span>
+    </div>
+    <div class="chart-body"><img src="charts/04_payment_methods.png" alt="Payment Methods" /></div>
+    <div class="chart-insight">
+      <strong>Credit card dominates at 73.9%</strong>, reflecting Brazil's installment payment culture.
+      Boleto bancário is second at 19% — a uniquely Brazilian cash-payment method.
+    </div>
+  </div>
+
+  <!-- Chart 5 -->
+  <div class="chart-card">
+    <div class="chart-header">
+      <h3>🚚 Delivery Time by Category</h3>
+      <span class="chart-tag">Logistics</span>
+    </div>
+    <div class="chart-body"><img src="charts/05_delivery_time.png" alt="Delivery Time" /></div>
+    <div class="chart-insight">
+      Heavy/large items (furniture, office) take <strong>25+ days</strong> to deliver.
+      Categories with long delivery times correlate directly with lower customer review scores.
+    </div>
+  </div>
+
+  <!-- Chart 6 -->
+  <div class="chart-card">
+    <div class="chart-header">
+      <h3>⭐ Customer Satisfaction vs Delivery Speed</h3>
+      <span class="chart-tag">Satisfaction</span>
+    </div>
+    <div class="chart-body"><img src="charts/06_ratings_distribution.png" alt="Ratings" /></div>
+    <div class="chart-insight">
+      <strong>Fast delivery (0–7 days) → 4.42★</strong> vs <strong>very slow (22+ days) → 3.12★</strong>.
+      Delivery speed is the single strongest predictor of customer review score on the platform.
+    </div>
+  </div>
+
+  <!-- Chart 7 — Full width -->
+  <div class="chart-card wide">
+    <div class="chart-header">
+      <h3>💰 Price Analysis by Product Category</h3>
+      <span class="chart-tag">Pricing</span>
+    </div>
+    <div class="chart-body"><img src="charts/07_price_by_category.png" alt="Price by Category" /></div>
+    <div class="chart-insight">
+      <strong>PCs &amp; Computers</strong> have the highest avg price at R$1,098.
+      Wide min-max ranges in electronics indicate a mixed product tier — budget accessories to premium devices.
+      Watches &amp; Gifts (Relogios Presentes) show large price variance driven by luxury items.
+    </div>
+  </div>
+
+</div>
+
+<!-- ════════════════════ KEY FINDINGS ════════════════════ -->
+<div class="section-title"><h2>💡 Key Findings &amp; Recommendations</h2></div>
+
+<div class="findings-grid">
+  <div class="finding-card" style="--accent-color: var(--blue)">
+    <div class="num">Finding 01</div>
+    <p><strong>Revenue grew 10× in 2 years.</strong> The Nov 2017 Black Friday peak shows seasonal demand is a major lever. Increase inventory and marketing spend in October–November.</p>
+  </div>
+  <div class="finding-card" style="--accent-color: var(--green)">
+    <div class="num">Finding 02</div>
+    <p><strong>SP/RJ/MG account for &gt;65% of orders.</strong> North and Northeast regions are severely underserved. Regional logistics partnerships could unlock significant new demand.</p>
+  </div>
+  <div class="finding-card" style="--accent-color: var(--gold)">
+    <div class="num">Finding 03</div>
+    <p><strong>Credit card = 73.9% of payments.</strong> Optimise instalment UX and consider adding Buy-Now-Pay-Later options to capture customers who avoid Boleto friction.</p>
+  </div>
+  <div class="finding-card" style="--accent-color: var(--red)">
+    <div class="num">Finding 04</div>
+    <p><strong>Delivery time is the #1 driver of review score.</strong> Fast (0–7d) orders score 4.42★ vs 3.12★ for slow (22+d). Investing in express fulfilment directly improves ratings.</p>
+  </div>
+  <div class="finding-card" style="--accent-color: var(--purple)">
+    <div class="num">Finding 05</div>
+    <p><strong>97% of customers are one-time buyers.</strong> Customer retention is the largest untapped growth lever. Loyalty programmes and re-engagement emails could 2× lifetime value.</p>
+  </div>
+  <div class="finding-card" style="--accent-color: var(--green)">
+    <div class="num">Finding 06</div>
+    <p><strong>Health &amp; Beauty leads revenue</strong> despite not being the highest-priced category — driven by high repeat purchase frequency. It's the ideal category for subscription models.</p>
+  </div>
+</div>
+
+<!-- ════════════════════ FOOTER ════════════════════ -->
+<footer>
+  <p>
+    <strong>Olist E-Commerce Analysis</strong> &nbsp;|&nbsp;
+    WAP 228 — Workplace Application &nbsp;|&nbsp;
+    OSTIM Technical University &nbsp;|&nbsp;
+    June 2026
+  </p>
+  <p style="margin-top:.5rem">
+    Dataset: <a href="https://www.kaggle.com/datasets/olistbr/brazilian-ecommerce" target="_blank">Olist Brazilian E-Commerce Public Dataset</a>
+    &nbsp;·&nbsp;
+    Stack: Python 3.10 · SQLite · Pandas · Matplotlib · Seaborn · Git
+  </p>
+</footer>
+
+</body>
+</html>
