@@ -190,20 +190,7 @@
     
     .meta-badge i { font-style: normal; font-size: 1.2rem; }
     
-    .meta-badge.countdown {
-      border-color: rgba(236, 72, 153, 0.3);
-      position: relative;
-      overflow: hidden;
-    }
-    .meta-badge.countdown::after {
-      content: '';
-      position: absolute;
-      top: 0; left: 0; right: 0; bottom: 0;
-      background: linear-gradient(90deg, transparent, rgba(236, 72, 153, 0.1), transparent);
-      transform: translateX(-100%);
-      animation: shimmer 3s infinite;
-    }
-    .meta-badge.countdown span { color: var(--accent-pink); font-family: 'Outfit', sans-serif; font-weight: 700; }
+
 
     /* ── STATS GRID (GLASSMORPHISM) ── */
     .dashboard-container {
@@ -569,13 +556,7 @@
         <div class="meta-badge">
           <i>🏫</i> <span>WAP 228 — OSTIM Technical University</span>
         </div>
-        <div class="meta-badge">
-          <i>👨‍💻</i> <span>Alhaddad A. Hani</span>
-        </div>
-        <!-- Dynamic Countdown Badge -->
-        <div class="meta-badge countdown" id="countdownBadge">
-          <i>⏱️</i> <span>Due: <span id="timeRemaining">Calculating...</span></span>
-        </div>
+
       </div>
     </div>
   </section>
@@ -825,34 +806,7 @@
       observer.observe(counter);
     });
 
-    // ── Deadline Countdown Timer ──
-    const deadlineDate = new Date("2026-06-23T23:59:59").getTime();
-    const countdownEl = document.getElementById("timeRemaining");
 
-    const updateCountdown = () => {
-      const now = new Date().getTime();
-      const distance = deadlineDate - now;
-
-      if (distance < 0) {
-        countdownEl.innerHTML = "DEADLINE PASSED";
-        countdownEl.style.color = "#ef4444";
-        return;
-      }
-
-      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-      let timeString = "";
-      if (days > 0) timeString += `${days}d `;
-      timeString += `${hours.toString().padStart(2, '0')}h ${minutes.toString().padStart(2, '0')}m ${seconds.toString().padStart(2, '0')}s`;
-      
-      countdownEl.innerHTML = timeString;
-    };
-
-    setInterval(updateCountdown, 1000);
-    updateCountdown(); // initial call
   </script>
 </body>
 </html>
