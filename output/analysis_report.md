@@ -5,7 +5,7 @@
 
 **University**: OSTIM Technical University  
 
-**Generated**: June 22, 2026 at 00:16  
+**Generated**: June 22, 2026 at 00:28  
 
 
 ---
@@ -33,6 +33,19 @@ Revenue grew steadily from late 2016 through mid-2018, with a notable peak in No
 Friday effect) and a plateau in early 2018. The dual upward trend in both revenue and order volume
 confirms organic customer acquisition growth.
 
+| year_month | total_revenue | total_orders |
+| --- | --- | --- |
+| 2016-09 | 279.69 | 2 |
+| 2016-10 | 51,354.52 | 290 |
+| 2016-12 | 19.62 | 1 |
+| 2017-01 | 136,943.46 | 787 |
+| 2017-02 | 283,561.69 | 1,718 |
+| 2017-03 | 425,617.96 | 2,617 |
+| 2017-04 | 405,848.61 | 2,377 |
+| 2017-05 | 582,710.83 | 3,640 |
+| 2017-06 | 499,652.24 | 3,205 |
+| 2017-07 | 578,753.73 | 3,946 |
+
 ![Monthly Revenue Chart](charts/01_monthly_revenue.png)
 
 
@@ -42,7 +55,18 @@ Bed/bath/table, health & beauty, sports/leisure, computers & accessories, and fu
 lead in revenue. These five categories collectively account for approximately 40% of total platform
 revenue, making them prime candidates for promotional investment.
 
-_No data available._
+| product_category_name | total_revenue | total_orders | avg_price |
+| --- | --- | --- | --- |
+| beleza_saude | 1,255,695.13 | 8,800 | 130.34 |
+| relogios_presentes | 1,198,185.21 | 5,604 | 200.70 |
+| cama_mesa_banho | 1,035,964.06 | 9,399 | 93.36 |
+| esporte_lazer | 979,740.92 | 7,673 | 114.06 |
+| informatica_acessorios | 904,322.02 | 6,654 | 116.22 |
+| moveis_decoracao | 727,465.05 | 6,425 | 87.67 |
+| utilidades_domesticas | 626,825.80 | 5,847 | 90.65 |
+| cool_stuff | 620,770.49 | 3,616 | 164.27 |
+| automotivo | 586,585.73 | 3,872 | 139.53 |
+| ferramentas_jardim | 481,009.94 | 3,505 | 111.14 |
 
 ![Top Categories Chart](charts/02_top_categories.png)
 
@@ -53,7 +77,18 @@ São Paulo (SP) accounts for the largest share of orders by a significant margin
 Janeiro (RJ) and Minas Gerais (MG). This concentration in the Southeast region reflects Brazil's
 economic centre of gravity. Northern and North-Eastern states represent untapped market potential.
 
-_No data available._
+| customer_state | total_orders | total_revenue | avg_order_value |
+| --- | --- | --- | --- |
+| SP | 41,125 | 5,878,132.06 | 124.66 |
+| RJ | 12,697 | 2,115,667.56 | 145.82 |
+| MG | 11,496 | 1,843,074.43 | 141.00 |
+| RS | 5,415 | 877,290.59 | 141.25 |
+| PR | 4,982 | 794,196.61 | 138.87 |
+| SC | 3,599 | 608,023.70 | 146.12 |
+| BA | 3,344 | 606,908.66 | 160.35 |
+| DF | 2,120 | 351,327.21 | 146.57 |
+| ES | 2,018 | 323,081.03 | 143.72 |
+| GO | 1,998 | 340,544.37 | 146.60 |
 
 ![Sales by State Chart](charts/03_sales_by_state.png)
 
@@ -65,7 +100,12 @@ for installment-based purchasing (parcelamento). Boleto bancário is second at ~
 and debit cards make up the remainder. Olist should prioritise seamless credit-card checkout and
 consider incentives for digital payment adoption.
 
-_No data available._
+| payment_type | total_transactions | total_value | pct_share |
+| --- | --- | --- | --- |
+| credit_card | 76,795 | 12,542,084.19 | 73.92 |
+| boleto | 19,784 | 2,869,361.27 | 19.04 |
+| voucher | 5,775 | 379,436.87 | 5.56 |
+| debit_card | 1,529 | 217,989.79 | 1.47 |
 
 ![Payment Methods Chart](charts/04_payment_methods.png)
 
@@ -76,7 +116,18 @@ Heavy furniture and office items have the longest average delivery times (25+ da
 digital products are delivered fastest (<10 days). Categories with long delivery times also tend to
 have lower review scores, validating the importance of logistics optimisation.
 
-_No data available._
+| product_category_name | avg_delivery_days | total_orders |
+| --- | --- | --- |
+| moveis_escritorio | 20.80 | 1,254 |
+| artigos_de_natal | 15.70 | 125 |
+| fashion_calcados | 15.40 | 235 |
+| eletrodomesticos_2 | 13.90 | 227 |
+| moveis_sala | 13.80 | 414 |
+| ferramentas_jardim | 13.70 | 3,448 |
+| fashion_underwear_e_moda_praia | 13.70 | 117 |
+| consoles_games | 13.60 | 1,018 |
+| pcs | 13.50 | 177 |
+| casa_conforto | 13.50 | 392 |
 
 ![Delivery Time Chart](charts/05_delivery_time.png)
 
@@ -88,7 +139,12 @@ delivered within 7 days receive an average score of 4.4/5, while orders taking 2
 2.8/5. Investing in express logistics can directly improve review scores, which in turn drives
 repeat purchases.
 
-_No data available._
+| delivery_speed_bucket | avg_review_score | order_count |
+| --- | --- | --- |
+| 0-7 days (Fast) | 4.42 | 25,837 |
+| 8-14 days (Normal) | 4.31 | 39,814 |
+| 15-21 days (Slow) | 4.14 | 17,474 |
+| 22+ days (Very Slow) | 3.12 | 12,239 |
 
 ![Ratings Distribution Chart](charts/06_ratings_distribution.png)
 
@@ -99,7 +155,18 @@ Computers and electronics command the highest average prices (R$1,000+), while f
 CDs/DVDs are among the most affordable. The wide min-max range in electronics indicates a mixed
 product tier — from budget accessories to premium devices — offering upsell opportunities.
 
-_No data available._
+| product_category_name | avg_price | min_price | max_price | item_count |
+| --- | --- | --- | --- | --- |
+| pcs | 1,098.34 | 34.50 | 6,729.00 | 203 |
+| portateis_casa_forno_e_cafe | 624.29 | 10.19 | 2,899.00 | 76 |
+| eletrodomesticos_2 | 470.85 | 13.90 | 2,350.00 | 235 |
+| agro_industria_e_comercio | 342.12 | 12.99 | 2,990.00 | 212 |
+| instrumentos_musicais | 280.70 | 4.90 | 4,399.87 | 669 |
+| eletroportateis | 280.04 | 6.50 | 4,799.00 | 671 |
+| telefonia_fixa | 221.55 | 6.00 | 1,790.00 | 261 |
+| construcao_ferramentas_seguranca | 209.47 | 8.90 | 3,099.90 | 189 |
+| relogios_presentes | 200.70 | 8.99 | 3,999.90 | 5,970 |
+| climatizacao | 185.50 | 10.90 | 1,599.00 | 295 |
 
 ![Price by Category Chart](charts/07_price_by_category.png)
 
@@ -111,7 +178,17 @@ repeat orders. This signals a significant retention challenge and suggests oppor
 programmes, post-purchase email campaigns, and personalised recommendations to increase customer
 lifetime value.
 
-_No data available._
+| purchase_frequency | customer_count | pct_of_total |
+| --- | --- | --- |
+| 1.00 | 92,102.00 | 96.96 |
+| 2.00 | 2,652.00 | 2.79 |
+| 3.00 | 188.00 | 0.20 |
+| 4.00 | 29.00 | 0.03 |
+| 5.00 | 9.00 | 0.01 |
+| 6.00 | 5.00 | 0.01 |
+| 7.00 | 3.00 | 0.00 |
+| 9.00 | 1.00 | 0.00 |
+| 16.00 | 1.00 | 0.00 |
 
 
 ## Methodology
