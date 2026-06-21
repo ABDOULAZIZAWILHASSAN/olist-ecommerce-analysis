@@ -5,7 +5,7 @@
 
 **University**: OSTIM Technical University  
 
-**Generated**: June 22, 2026 at 00:28  
+**Generated**: June 22, 2026 at 01:06  
 
 
 ---
@@ -57,16 +57,16 @@ revenue, making them prime candidates for promotional investment.
 
 | product_category_name | total_revenue | total_orders | avg_price |
 | --- | --- | --- | --- |
-| beleza_saude | 1,255,695.13 | 8,800 | 130.34 |
-| relogios_presentes | 1,198,185.21 | 5,604 | 200.70 |
-| cama_mesa_banho | 1,035,964.06 | 9,399 | 93.36 |
-| esporte_lazer | 979,740.92 | 7,673 | 114.06 |
-| informatica_acessorios | 904,322.02 | 6,654 | 116.22 |
-| moveis_decoracao | 727,465.05 | 6,425 | 87.67 |
-| utilidades_domesticas | 626,825.80 | 5,847 | 90.65 |
-| cool_stuff | 620,770.49 | 3,616 | 164.27 |
-| automotivo | 586,585.73 | 3,872 | 139.53 |
-| ferramentas_jardim | 481,009.94 | 3,505 | 111.14 |
+| Health & Beauty | 1,255,695.13 | 8,800 | 130.34 |
+| Watches & Gifts | 1,198,185.21 | 5,604 | 200.70 |
+| Bed, Bath & Table | 1,035,964.06 | 9,399 | 93.36 |
+| Sports & Leisure | 979,740.92 | 7,673 | 114.06 |
+| Computers & Accessories | 904,322.02 | 6,654 | 116.22 |
+| Furniture & Decor | 727,465.05 | 6,425 | 87.67 |
+| Housewares | 626,825.80 | 5,847 | 90.65 |
+| Cool Stuff | 620,770.49 | 3,616 | 164.27 |
+| Auto | 586,585.73 | 3,872 | 139.53 |
+| Garden Tools | 481,009.94 | 3,505 | 111.14 |
 
 ![Top Categories Chart](charts/02_top_categories.png)
 
@@ -118,16 +118,16 @@ have lower review scores, validating the importance of logistics optimisation.
 
 | product_category_name | avg_delivery_days | total_orders |
 | --- | --- | --- |
-| moveis_escritorio | 20.80 | 1,254 |
-| artigos_de_natal | 15.70 | 125 |
-| fashion_calcados | 15.40 | 235 |
-| eletrodomesticos_2 | 13.90 | 227 |
-| moveis_sala | 13.80 | 414 |
-| ferramentas_jardim | 13.70 | 3,448 |
-| fashion_underwear_e_moda_praia | 13.70 | 117 |
-| consoles_games | 13.60 | 1,018 |
-| pcs | 13.50 | 177 |
-| casa_conforto | 13.50 | 392 |
+| Office Furniture | 20.80 | 1,254 |
+| Christmas Supplies | 15.70 | 125 |
+| Fashion Shoes | 15.40 | 235 |
+| Home Appliances 2 | 13.90 | 227 |
+| Living Room Furniture | 13.80 | 414 |
+| Garden Tools | 13.70 | 3,448 |
+| Fashion Underwear & Beachwear | 13.70 | 117 |
+| Consoles & Games | 13.60 | 1,018 |
+| Computers (PCs) | 13.50 | 177 |
+| Home Comfort | 13.50 | 392 |
 
 ![Delivery Time Chart](charts/05_delivery_time.png)
 
@@ -157,16 +157,16 @@ product tier — from budget accessories to premium devices — offering upsell 
 
 | product_category_name | avg_price | min_price | max_price | item_count |
 | --- | --- | --- | --- | --- |
-| pcs | 1,098.34 | 34.50 | 6,729.00 | 203 |
-| portateis_casa_forno_e_cafe | 624.29 | 10.19 | 2,899.00 | 76 |
-| eletrodomesticos_2 | 470.85 | 13.90 | 2,350.00 | 235 |
-| agro_industria_e_comercio | 342.12 | 12.99 | 2,990.00 | 212 |
-| instrumentos_musicais | 280.70 | 4.90 | 4,399.87 | 669 |
-| eletroportateis | 280.04 | 6.50 | 4,799.00 | 671 |
-| telefonia_fixa | 221.55 | 6.00 | 1,790.00 | 261 |
-| construcao_ferramentas_seguranca | 209.47 | 8.90 | 3,099.90 | 189 |
-| relogios_presentes | 200.70 | 8.99 | 3,999.90 | 5,970 |
-| climatizacao | 185.50 | 10.90 | 1,599.00 | 295 |
+| Computers (PCs) | 1,098.34 | 34.50 | 6,729.00 | 203 |
+| Small Appliances (Oven & Coffee) | 624.29 | 10.19 | 2,899.00 | 76 |
+| Home Appliances 2 | 470.85 | 13.90 | 2,350.00 | 235 |
+| Agro Industry & Commerce | 342.12 | 12.99 | 2,990.00 | 212 |
+| Musical Instruments | 280.70 | 4.90 | 4,399.87 | 669 |
+| Small Appliances | 280.04 | 6.50 | 4,799.00 | 671 |
+| Fixed Telephony | 221.55 | 6.00 | 1,790.00 | 261 |
+| Safety & Construction | 209.47 | 8.90 | 3,099.90 | 189 |
+| Watches & Gifts | 200.70 | 8.99 | 3,999.90 | 5,970 |
+| Air Conditioning | 185.50 | 10.90 | 1,599.00 | 295 |
 
 ![Price by Category Chart](charts/07_price_by_category.png)
 

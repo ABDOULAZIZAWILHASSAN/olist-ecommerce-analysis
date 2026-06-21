@@ -155,9 +155,8 @@ def create_top_categories(df: pd.DataFrame, output_dir: Path) -> None:
 
     _apply_dark_style()
     df_plot = df.sort_values("total_revenue")
-    # Prettify category names: replace underscores, title-case
     df_plot = df_plot.copy()
-    df_plot["label"] = df_plot["product_category_name"].str.replace("_", " ").str.title()
+    df_plot["label"] = df_plot["product_category_name"]  # already translated to English
 
     fig, ax = plt.subplots(figsize=(12, 7))
     bars = ax.barh(
@@ -267,7 +266,7 @@ def create_delivery_time(df: pd.DataFrame, output_dir: Path) -> None:
 
     _apply_dark_style()
     df_plot = df.sort_values("avg_delivery_days").copy()
-    df_plot["label"] = df_plot["product_category_name"].str.replace("_", " ").str.title()
+    df_plot["label"] = df_plot["product_category_name"]  # already translated to English
 
     fig, ax = plt.subplots(figsize=(12, 7))
     norm = plt.Normalize(df_plot["avg_delivery_days"].min(), df_plot["avg_delivery_days"].max())
@@ -344,7 +343,7 @@ def create_price_by_category(df: pd.DataFrame, output_dir: Path) -> None:
 
     _apply_dark_style()
     df_plot = df.sort_values("avg_price").copy()
-    df_plot["label"] = df_plot["product_category_name"].str.replace("_", " ").str.title()
+    df_plot["label"] = df_plot["product_category_name"]  # already translated to English
 
     fig, ax = plt.subplots(figsize=(12, 8))
     y_pos = np.arange(len(df_plot))

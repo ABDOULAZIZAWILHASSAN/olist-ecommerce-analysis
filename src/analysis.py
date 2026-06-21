@@ -19,12 +19,102 @@ Usage:
 
 import logging
 import pandas as pd
+from pathlib import Path
 from typing import TYPE_CHECKING
 
 if TYPE_CHECKING:
     from src.database import DatabaseManager
 
 logger = logging.getLogger(__name__)
+
+# ---------------------------------------------------------------------------
+# Portuguese → English category name translation map
+# (built from product_category_name_translation.csv)
+# ---------------------------------------------------------------------------
+
+_PT_TO_EN: dict[str, str] = {
+    "beleza_saude": "Health & Beauty",
+    "informatica_acessorios": "Computers & Accessories",
+    "automotivo": "Auto",
+    "cama_mesa_banho": "Bed, Bath & Table",
+    "moveis_decoracao": "Furniture & Decor",
+    "esporte_lazer": "Sports & Leisure",
+    "perfumaria": "Perfumery",
+    "utilidades_domesticas": "Housewares",
+    "telefonia": "Telephony",
+    "relogios_presentes": "Watches & Gifts",
+    "alimentos_bebidas": "Food & Drink",
+    "bebes": "Baby",
+    "papelaria": "Stationery",
+    "tablets_impressao_imagem": "Tablets & Printing",
+    "brinquedos": "Toys",
+    "telefonia_fixa": "Fixed Telephony",
+    "ferramentas_jardim": "Garden Tools",
+    "fashion_bolsas_e_acessorios": "Fashion Bags & Accessories",
+    "eletroportateis": "Small Appliances",
+    "consoles_games": "Consoles & Games",
+    "audio": "Audio",
+    "fashion_calcados": "Fashion Shoes",
+    "cool_stuff": "Cool Stuff",
+    "malas_acessorios": "Luggage & Accessories",
+    "climatizacao": "Air Conditioning",
+    "construcao_ferramentas_construcao": "Construction Tools",
+    "moveis_cozinha_area_de_servico_jantar_e_jardim": "Kitchen & Garden Furniture",
+    "construcao_ferramentas_jardim": "Garden Construction Tools",
+    "fashion_roupa_masculina": "Men's Fashion",
+    "pet_shop": "Pet Shop",
+    "moveis_escritorio": "Office Furniture",
+    "market_place": "Marketplace",
+    "eletronicos": "Electronics",
+    "eletrodomesticos": "Home Appliances",
+    "artigos_de_festas": "Party Supplies",
+    "casa_conforto": "Home Comfort",
+    "construcao_ferramentas_ferramentas": "Tools & Hardware",
+    "agro_industria_e_comercio": "Agro Industry & Commerce",
+    "moveis_colchao_e_estofado": "Mattress & Upholstery",
+    "livros_tecnicos": "Technical Books",
+    "casa_construcao": "Home Construction",
+    "instrumentos_musicais": "Musical Instruments",
+    "moveis_sala": "Living Room Furniture",
+    "construcao_ferramentas_iluminacao": "Lighting & Construction",
+    "industria_comercio_e_negocios": "Industry & Commerce",
+    "alimentos": "Food",
+    "artes": "Arts",
+    "moveis_quarto": "Bedroom Furniture",
+    "livros_interesse_geral": "General Books",
+    "construcao_ferramentas_seguranca": "Safety & Construction",
+    "fashion_underwear_e_moda_praia": "Fashion Underwear & Beachwear",
+    "fashion_esporte": "Fashion Sport",
+    "sinalizacao_e_seguranca": "Signaling & Security",
+    "pcs": "Computers (PCs)",
+    "artigos_de_natal": "Christmas Supplies",
+    "fashion_roupa_feminina": "Women's Fashion",
+    "eletrodomesticos_2": "Home Appliances 2",
+    "livros_importados": "Imported Books",
+    "bebidas": "Drinks",
+    "cine_foto": "Cinema & Photo",
+    "la_cuisine": "La Cuisine",
+    "musica": "Music",
+    "casa_conforto_2": "Home Comfort 2",
+    "portateis_casa_forno_e_cafe": "Small Appliances (Oven & Coffee)",
+    "cds_dvds_musicais": "CDs & DVDs",
+    "dvds_blu_ray": "DVDs & Blu-Ray",
+    "flores": "Flowers",
+    "artes_e_artesanato": "Arts & Crafts",
+    "fraldas_higiene": "Diapers & Hygiene",
+    "fashion_roupa_infanto_juvenil": "Children's Fashion",
+    "seguros_e_servicos": "Insurance & Services",
+    "Unknown": "Unknown",
+}
+
+
+def translate_categories(df: pd.DataFrame, col: str = "product_category_name") -> pd.DataFrame:
+    """Translate Portuguese category names to English in-place."""
+    if col in df.columns:
+        df = df.copy()
+        df[col] = df[col].map(lambda x: _PT_TO_EN.get(str(x), str(x).replace("_", " ").title()))
+    return df
+
 
 
 # ---------------------------------------------------------------------------
@@ -75,6 +165,8 @@ def query_top_categories(db: "DatabaseManager") -> pd.DataFrame:
     LIMIT 10
     """
     df = pd.DataFrame(db.execute_query(sql))
+    if not df.empty:
+        df = translate_categories(df)
     logger.info("Query 2 (top_categories): %d rows", len(df))
     return df
 
@@ -150,6 +242,8 @@ def query_delivery_time(db: "DatabaseManager") -> pd.DataFrame:
     LIMIT 15
     """
     df = pd.DataFrame(db.execute_query(sql))
+    if not df.empty:
+        df = translate_categories(df)
     logger.info("Query 5 (delivery_time): %d rows", len(df))
     return df
 
@@ -207,6 +301,8 @@ def query_price_by_category(db: "DatabaseManager") -> pd.DataFrame:
     LIMIT 15
     """
     df = pd.DataFrame(db.execute_query(sql))
+    if not df.empty:
+        df = translate_categories(df)
     logger.info("Query 7 (price_by_category): %d rows", len(df))
     return df
 
@@ -289,6 +385,10 @@ def query_customer_retention(db: "DatabaseManager") -> pd.DataFrame:
     ORDER BY purchase_count
     """
     df = pd.DataFrame(db.execute_query(sql))
+    if not df.empty:
+        # Cast to int so report shows 1, 2, 3 not 1.00, 2.00, 3.00
+        df["purchase_frequency"] = df["purchase_frequency"].astype(int)
+        df["customer_count"]     = df["customer_count"].astype(int)
     logger.info("Query 10 (customer_retention): %d rows", len(df))
     return df
 
