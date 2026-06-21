@@ -1,36 +1,83 @@
-# Python
-venv/
+# ── Python / Virtual Environments ──
 __pycache__/
-*.pyc
-*.pyo
-*.pyd
+*.py[cod]
+*$py.class
 .Python
-*.egg-info/
-dist/
+env/
+venv/
+.env
+.venv
+ENV/
+env.bak/
+venv.bak/
+
+# ── Distribution / Packaging ──
+.Python
 build/
+develop-eggs/
+dist/
+downloads/
+eggs/
 .eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
 
-# Database (generated - not committed)
-database/olist.db
+# ── Unit test / coverage reports ──
+htmlcov/
+.tox/
+.nox/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+*.py,cover
+.hypothesis/
+.pytest_cache/
 
-# Raw data CSVs (too large for GitHub)
+# ── Data & Databases ──
+database/*.db
+database/*.sqlite
+database/*.sqlite3
 data/raw/*.csv
 data/raw/*.zip
+*.db
+*.sqlite3
+*.csv
 
-# Jupyter
-.ipynb_checkpoints/
-*.ipynb
-
-# OS
-.DS_Store
-Thumbs.db
-desktop.ini
-
-# IDE
-.vscode/
+# ── IDEs / Editors ──
 .idea/
+.vscode/
 *.swp
 *.swo
+*~
+.spyderproject
+.spyproject
 
-# Kaggle credentials
+# ── OS Generated Files ──
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+ehthumbs_vista.db
+[Tt]humbs.db
+desktop.ini
+
+# ── Jupyter Notebook ──
+.ipynb_checkpoints
+*.ipynb
+
+# ── Project Specific / Secrets ──
 kaggle.json
+secrets.json
+config.ini
