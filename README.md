@@ -6,8 +6,6 @@
 [![Matplotlib](https://img.shields.io/badge/Matplotlib-3.9-11557C)](https://matplotlib.org)
 [![License](https://img.shields.io/badge/License-MIT-green)](LICENSE)
 
-**WAP 228 — Workplace Application | OSTIM Technical University**
-
 An end-to-end data analysis pipeline for the [Brazilian E-Commerce Public Dataset by Olist](https://www.kaggle.com/datasets/olistbr/brazilian-ecommerce), covering 100,000+ real orders placed on the platform between 2016 and 2018.
 
 ---
@@ -190,7 +188,35 @@ All 10 queries are in `database/queries.sql` with inline documentation:
 5. **97% one-time buyers** — Massive retention opportunity through loyalty initiatives.
 6. **Electronics & computers** — Highest unit prices but also longest delivery times.
 
+---
 
+## 🧠 Project Development & Reflection
+
+### Development Process
+The project was developed using a structured data engineering approach:
+1. **Data Ingestion**: Raw Kaggle CSVs were downloaded and loaded into pandas DataFrames.
+2. **Database Architecture**: An SQLite relational database was designed with strict schemas, foreign keys, and indexes for optimized querying.
+3. **ETL Pipeline**: Python scripts were written to clean, format, and load the raw data into the SQLite database.
+4. **Analysis Execution**: 10 complex SQL queries were written and executed via Python's `sqlite3` adapter to extract business metrics.
+5. **Visualization & Reporting**: Matplotlib and Seaborn were used to translate the queried data into professional charts and a Markdown report.
+6. **Web Dashboard**: An enterprise-grade, glassmorphism-themed HTML dashboard was designed to showcase the final charts and insights.
+
+### Challenging Parts
+- **Data Integrity**: Handling missing values and ensuring referential integrity when inserting 100,000+ rows across 7 interconnected tables.
+- **Complex Aggregations**: Writing SQL window functions and subqueries to calculate complex metrics like Customer Retention without crashing the lightweight SQLite database.
+- **Data Translation**: The original dataset featured Portuguese category names, requiring a mapping dictionary in Python to translate them to English for professional presentation.
+
+### What Was Learned
+- How to architect and orchestrate an automated, modular data pipeline from raw file ingestion to final HTML rendering.
+- Advanced SQL techniques for time-series analysis and cohort behavior.
+- Best practices for presenting data visually, ensuring charts are not just accurate, but also aesthetically engaging and easy for stakeholders to understand.
+
+### Role of the Technology Stack
+- **Python**: Acted as the core orchestrator. It handled file I/O, managed the database connection, executed the SQL scripts, manipulated data via Pandas, and generated the visualizations.
+- **SQL (SQLite)**: Served as the analytical engine. It was responsible for joining massive datasets, filtering, aggregating, and returning clean analytical views to Python, proving that database-level transformations are much more efficient than memory-level filtering.
+- **GitHub**: Provided version control and project hosting. It allowed for safe, incremental feature development (via commits), tracked history, and served as the final public portfolio host to share the project with others.
+
+---
 
 ## 📚 Resources
 
