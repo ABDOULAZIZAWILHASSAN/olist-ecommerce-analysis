@@ -190,30 +190,7 @@ All 10 queries are in `database/queries.sql` with inline documentation:
 5. **97% one-time buyers** — Massive retention opportunity through loyalty initiatives.
 6. **Electronics & computers** — Highest unit prices but also longest delivery times.
 
----
 
-## 🐛 Troubleshooting
-
-| Problem | Solution |
-|---------|----------|
-| `FileNotFoundError: olist_customers_dataset.csv` | Place all 7 CSVs in `data/raw/` |
-| `ModuleNotFoundError: No module named 'pandas'` | Run `pip install -r requirements.txt` |
-| `OperationalError: database is locked` | Delete `database/olist.db` and re-run |
-| Import errors when running `main.py` | Run from project root: `python src/main.py` |
-| Charts not generated | Check `output/charts/` directory exists |
-
----
-
-## 📋 Evaluation Rubric (30-30-20-20)
-
-| Criterion | Weight | Implementation |
-|-----------|--------|---------------|
-| **SQL Skills** | 30% | 10 queries: JOINs, GROUP BY, HAVING, window functions, date math |
-| **Python Skills** | 30% | 4 modular files, docstrings, error handling, type hints |
-| **Analysis & Visualization** | 20% | 7 charts + report with business insights |
-| **GitHub & Documentation** | 20% | 15-20 commits, detailed README, inline comments |
-
----
 
 ## 📚 Resources
 
