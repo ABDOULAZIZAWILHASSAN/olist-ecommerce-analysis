@@ -229,11 +229,4 @@ All 10 queries are in `database/queries.sql` with inline documentation:
 
 This project is licensed under the **MIT License**.
 
----
 
-**Author:** ABDOULAZIZAWILHASSAN  
-**GitHub:** [ABDOULAZIZAWILHASSAN](https://github.com/ABDOULAZIZAWILHASSAN)  
-**Course**: WAP 228 — Workplace Application  
-**University**: OSTIM Technical University  
-**Submission Deadline**: June 23, 2026 at 23:59  
-**Submit at**: [https://forms.office.com/r/Kj0CdW5Y4Q](https://forms.office.com/r/Kj0CdW5Y4Q)
