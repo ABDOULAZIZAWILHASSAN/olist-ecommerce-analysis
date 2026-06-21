@@ -1,0 +1,59 @@
+== OLIST E-COMMERCE ANALYSIS — PROJECT LOG ==
+Course: WAP 228 | OSTIM Technical University
+Deadline: June 23, 2026 at 23:59
+
+--- Week 1: Setup & Exploration ---
+- Created GitHub repository: olist-ecommerce-analysis (PUBLIC)
+- Set up Python virtual environment with pandas, matplotlib, seaborn
+- Downloaded Olist Brazilian E-Commerce dataset from Kaggle (7 CSV files)
+- Explored dataset structure: ~100k orders, 99k customers, 33k sellers
+- Key observation: data spans Sept 2016 to Oct 2018
+
+--- Week 2: Database Design ---
+- Designed SQLite schema with 7 tables mirroring the Kaggle dataset
+- Added foreign key relationships (orders -> customers, order_items -> products, etc.)
+- Created indexes on frequently joined columns for query performance
+- Loaded all 7 CSV files successfully into olist.db
+
+--- Weeks 3-4: SQL Query Development ---
+- Written 10 analytical SQL queries covering:
+  1. Monthly revenue trend (2016-2018)
+  2. Top 10 product categories by revenue
+  3. Sales distribution by Brazilian state
+  4. Payment method breakdown
+  5. Delivery time analysis by category
+  6. Customer satisfaction vs delivery speed
+  7. Top 10 seller performance
+  8. Seasonal patterns (monthly order volume)
+  9. Customer retention (repeat purchase rate)
+  10. Price analysis by category (avg, min, max)
+- Verified all queries return correct aggregations
+
+--- Week 5: Python Pipeline ---
+- Created database.py: handles SQLite connection, CSV loading, index creation
+- Created analysis.py: executes all 10 SQL queries, returns pandas DataFrames
+- Created main.py: orchestrates the full pipeline end-to-end
+- Pipeline tested successfully: DB creation -> CSV load -> query execution
+
+--- Week 6: Visualizations ---
+- Built 7 professional charts using matplotlib + seaborn:
+  01_monthly_revenue.png   - dual-axis line chart (revenue + orders)
+  02_top_categories.png    - horizontal bar chart
+  03_sales_by_state.png    - vertical bar chart with color gradient
+  04_payment_methods.png   - donut pie chart
+  05_delivery_time.png     - horizontal bar chart with error bars
+  06_ratings_distribution.png - histogram/bar chart
+  07_price_by_category.png - box-style bar chart with error bars
+- All charts saved at 300 DPI with professional styling
+
+--- Week 7: Documentation ---
+- Written comprehensive README.md with setup guide and architecture
+- Created analysis_report.md with executive summary and key insights
+- Documented all queries in queries.sql with inline comments
+- Added GITHUB_GUIDE.md for git workflow reference
+
+--- Week 8: Polish & Submit ---
+- Final review of all code — added docstrings and comments throughout
+- Ran full pipeline from scratch (fresh DB) — all 7 charts generated cleanly
+- Verified public GitHub repository is accessible
+- Submitted GitHub link and report to WAP 228 form

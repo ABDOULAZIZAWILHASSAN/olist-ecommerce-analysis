@@ -1,0 +1,52 @@
+2026-06-22 00:16:10,121 [INFO] __main__: ============================================================
+2026-06-22 00:16:10,122 [INFO] __main__:   Olist E-Commerce Analysis Pipeline
+2026-06-22 00:16:10,122 [INFO] __main__:   WAP 228 | OSTIM Technical University
+2026-06-22 00:16:10,122 [INFO] __main__: ============================================================
+2026-06-22 00:16:10,122 [INFO] __main__: 
+[Step 1/4] Initialising database: C:\Users\adenh\OneDrive\Desktop\workplace\olist-ecommerce-analysis\database\olist.db
+2026-06-22 00:16:10,123 [INFO] src.database: Connecting to database: C:\Users\adenh\OneDrive\Desktop\workplace\olist-ecommerce-analysis\database\olist.db
+2026-06-22 00:16:10,131 [INFO] src.database: Applying schema from: C:\Users\adenh\OneDrive\Desktop\workplace\olist-ecommerce-analysis\database\schema.sql
+2026-06-22 00:16:10,157 [INFO] src.database: Schema applied successfully.
+2026-06-22 00:16:10,157 [INFO] __main__: 
+[Step 2/4] Loading CSV data from: C:\Users\adenh\OneDrive\Desktop\workplace\olist-ecommerce-analysis\data\raw
+2026-06-22 00:16:10,158 [WARNING] src.database: CSV not found, skipping: C:\Users\adenh\OneDrive\Desktop\workplace\olist-ecommerce-analysis\data\raw\olist_customers_dataset.csv
+2026-06-22 00:16:10,159 [WARNING] src.database: CSV not found, skipping: C:\Users\adenh\OneDrive\Desktop\workplace\olist-ecommerce-analysis\data\raw\olist_products_dataset.csv
+2026-06-22 00:16:10,159 [WARNING] src.database: CSV not found, skipping: C:\Users\adenh\OneDrive\Desktop\workplace\olist-ecommerce-analysis\data\raw\olist_sellers_dataset.csv
+2026-06-22 00:16:10,159 [WARNING] src.database: CSV not found, skipping: C:\Users\adenh\OneDrive\Desktop\workplace\olist-ecommerce-analysis\data\raw\olist_orders_dataset.csv
+2026-06-22 00:16:10,160 [WARNING] src.database: CSV not found, skipping: C:\Users\adenh\OneDrive\Desktop\workplace\olist-ecommerce-analysis\data\raw\olist_order_items_dataset.csv
+2026-06-22 00:16:10,160 [WARNING] src.database: CSV not found, skipping: C:\Users\adenh\OneDrive\Desktop\workplace\olist-ecommerce-analysis\data\raw\olist_order_payments_dataset.csv
+2026-06-22 00:16:10,160 [WARNING] src.database: CSV not found, skipping: C:\Users\adenh\OneDrive\Desktop\workplace\olist-ecommerce-analysis\data\raw\olist_order_reviews_dataset.csv
+2026-06-22 00:16:10,160 [WARNING] __main__: No data was loaded. Make sure the 7 CSV files are in C:\Users\adenh\OneDrive\Desktop\workplace\olist-ecommerce-analysis\data\raw
+2026-06-22 00:16:10,161 [INFO] __main__: 
+[Step 3/4] Running analysis queries...
+2026-06-22 00:16:10,161 [INFO] src.analysis: Running all analysis queries...
+2026-06-22 00:16:10,163 [INFO] src.analysis: Query 1 (monthly_revenue): 0 rows
+2026-06-22 00:16:10,165 [INFO] src.analysis: Query 2 (top_categories): 0 rows
+2026-06-22 00:16:10,166 [INFO] src.analysis: Query 3 (sales_by_state): 0 rows
+2026-06-22 00:16:10,168 [INFO] src.analysis: Query 4 (payment_methods): 0 rows
+2026-06-22 00:16:10,170 [INFO] src.analysis: Query 5 (delivery_time): 0 rows
+2026-06-22 00:16:10,171 [INFO] src.analysis: Query 6 (ratings_distribution): 0 rows
+2026-06-22 00:16:10,173 [INFO] src.analysis: Query 7 (price_by_category): 0 rows
+2026-06-22 00:16:10,175 [INFO] src.analysis: Query 8 (top_sellers): 0 rows
+2026-06-22 00:16:10,176 [INFO] src.analysis: Query 9 (seasonal_patterns): 0 rows
+2026-06-22 00:16:10,178 [INFO] src.analysis: Query 10 (customer_retention): 0 rows
+2026-06-22 00:16:10,178 [INFO] src.analysis: All analyses complete.
+2026-06-22 00:16:10,185 [INFO] src.database: Database connection closed.
+2026-06-22 00:16:10,185 [INFO] __main__: 
+[Step 4/4] Generating charts and report...
+2026-06-22 00:16:10,186 [INFO] src.visualizations: Generating charts into: C:\Users\adenh\OneDrive\Desktop\workplace\olist-ecommerce-analysis\output\charts
+2026-06-22 00:16:10,187 [WARNING] src.visualizations: No data for monthly revenue chart.
+2026-06-22 00:16:10,189 [WARNING] src.visualizations: No data for top categories chart.
+2026-06-22 00:16:10,189 [WARNING] src.visualizations: No data for sales by state chart.
+2026-06-22 00:16:10,190 [WARNING] src.visualizations: No data for payment methods chart.
+2026-06-22 00:16:10,192 [WARNING] src.visualizations: No data for delivery time chart.
+2026-06-22 00:16:10,192 [WARNING] src.visualizations: No data for ratings chart.
+2026-06-22 00:16:10,194 [WARNING] src.visualizations: No data for price chart.
+2026-06-22 00:16:10,194 [INFO] src.visualizations: All 7 charts generated successfully.
+2026-06-22 00:16:10,200 [INFO] __main__: Report written: C:\Users\adenh\OneDrive\Desktop\workplace\olist-ecommerce-analysis\output\analysis_report.md
+2026-06-22 00:16:10,201 [INFO] __main__: 
+============================================================
+2026-06-22 00:16:10,201 [INFO] __main__:   Pipeline complete in 0.1 seconds.
+2026-06-22 00:16:10,201 [INFO] __main__:   Charts  -> C:\Users\adenh\OneDrive\Desktop\workplace\olist-ecommerce-analysis\output\charts
+2026-06-22 00:16:10,201 [INFO] __main__:   Report  -> C:\Users\adenh\OneDrive\Desktop\workplace\olist-ecommerce-analysis\output\analysis_report.md
+2026-06-22 00:16:10,201 [INFO] __main__: ============================================================
