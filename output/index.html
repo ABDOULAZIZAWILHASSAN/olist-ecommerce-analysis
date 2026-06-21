@@ -4,438 +4,855 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Olist E-Commerce Analysis — WAP 228</title>
+  
+  <!-- Modern Typography -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  
   <style>
+    /* ── BASE & RESET ── */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
+    
     :root {
-      --bg:        #0d1117;
-      --surface:   #161b22;
-      --surface2:  #1c2330;
-      --border:    #30363d;
-      --text:      #e6edf3;
-      --muted:     #8b949e;
-      --blue:      #2C7BE5;
-      --red:       #E63757;
-      --green:     #00B887;
-      --gold:      #F6C90E;
-      --purple:    #9B59B6;
-      --accent:    #58a6ff;
+      /* Premium Dark Theme Colors */
+      --bg-base: #050505;
+      --bg-surface: #0a0a0a;
+      --bg-surface-elevated: #121212;
+      --text-primary: #ffffff;
+      --text-secondary: #a1a1aa;
+      --border-color: rgba(255, 255, 255, 0.08);
+      
+      /* Vibrant Accents */
+      --accent-blue: #3b82f6;
+      --accent-purple: #8b5cf6;
+      --accent-pink: #ec4899;
+      --accent-green: #10b981;
+      --accent-amber: #f59e0b;
+      
+      /* Gradients */
+      --gradient-primary: linear-gradient(135deg, #3b82f6, #8b5cf6);
+      --gradient-text: linear-gradient(to right, #fff, #a1a1aa);
+      --gradient-glow: conic-gradient(from 180deg at 50% 50%, #2a8af6 0deg, #a853ba 180deg, #e92a67 360deg);
+      
+      /* Glassmorphism */
+      --glass-bg: rgba(18, 18, 18, 0.6);
+      --glass-border: rgba(255, 255, 255, 0.05);
+      --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+      
+      font-family: 'Plus Jakarta Sans', sans-serif;
     }
 
     body {
-      background: var(--bg);
-      color: var(--text);
-      font-family: 'Inter', sans-serif;
-      min-height: 100vh;
+      background-color: var(--bg-base);
+      color: var(--text-primary);
+      line-height: 1.6;
+      overflow-x: hidden;
+      /* Subtle noise texture over background */
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.03'/%3E%3C/svg%3E");
     }
 
-    /* ── HEADER ── */
-    header {
-      background: linear-gradient(135deg, #0d1117 0%, #161b22 50%, #0d2137 100%);
-      border-bottom: 1px solid var(--border);
-      padding: 3rem 2rem 2.5rem;
-      text-align: center;
+    /* Typography Overrides */
+    h1, h2, h3, h4, .font-heading {
+      font-family: 'Outfit', sans-serif;
+    }
+
+    /* ── ANIMATIONS ── */
+    @keyframes float {
+      0% { transform: translateY(0px); }
+      50% { transform: translateY(-10px); }
+      100% { transform: translateY(0px); }
+    }
+    @keyframes pulse-glow {
+      0%, 100% { opacity: 0.5; transform: scale(1); }
+      50% { opacity: 0.8; transform: scale(1.05); }
+    }
+    @keyframes slideUpFade {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes shimmer {
+      0% { background-position: -200% 0; }
+      100% { background-position: 200% 0; }
+    }
+
+    /* ── HERO SECTION ── */
+    .hero {
       position: relative;
+      padding: 8rem 2rem 5rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
       overflow: hidden;
+      min-height: 70vh;
     }
-    header::before {
+    
+    /* Background Glow Effects */
+    .hero::before {
       content: '';
-      position: absolute; inset: 0;
-      background: radial-gradient(ellipse 80% 60% at 50% 0%, rgba(44,123,229,.15), transparent);
-      pointer-events: none;
+      position: absolute;
+      top: -20%; left: 50%;
+      transform: translateX(-50%);
+      width: 800px; height: 800px;
+      background: var(--gradient-glow);
+      filter: blur(120px);
+      opacity: 0.15;
+      z-index: 0;
+      animation: pulse-glow 8s ease-in-out infinite;
+      border-radius: 50%;
     }
-    header .badge {
-      display: inline-block;
-      background: rgba(44,123,229,.15);
-      border: 1px solid rgba(44,123,229,.35);
-      color: var(--accent);
-      font-size: .75rem;
+
+    .hero-content {
+      position: relative;
+      z-index: 10;
+      max-width: 900px;
+      animation: slideUpFade 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+
+    .badge-premium {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.5rem 1.25rem;
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 100px;
+      font-family: 'Outfit', sans-serif;
+      font-size: 0.875rem;
       font-weight: 600;
-      letter-spacing: .1em;
+      letter-spacing: 0.05em;
       text-transform: uppercase;
-      padding: .3rem .9rem;
-      border-radius: 2rem;
-      margin-bottom: 1.2rem;
+      margin-bottom: 2rem;
+      backdrop-filter: blur(10px);
+      box-shadow: 0 4px 20px rgba(0,0,0,0.2);
     }
-    header h1 {
-      font-size: clamp(1.8rem, 5vw, 3rem);
+    
+    .badge-premium span.dot {
+      width: 8px; height: 8px;
+      background: var(--accent-blue);
+      border-radius: 50%;
+      box-shadow: 0 0 10px var(--accent-blue);
+    }
+
+    .hero h1 {
+      font-size: clamp(3rem, 7vw, 5.5rem);
       font-weight: 800;
-      background: linear-gradient(120deg, #e6edf3 30%, var(--accent));
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+      margin-bottom: 1.5rem;
+      /* Premium text gradient */
+      background: linear-gradient(to right, #ffffff, #a1a1aa, #ffffff);
+      background-size: 200% auto;
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
-      margin-bottom: .6rem;
+      animation: shimmer 5s linear infinite;
     }
-    header p {
-      color: var(--muted);
-      font-size: 1rem;
-      max-width: 600px;
-      margin: 0 auto 1.5rem;
-      line-height: 1.6;
-    }
-    .header-meta {
-      display: flex;
-      justify-content: center;
-      gap: 2rem;
-      flex-wrap: wrap;
-      font-size: .8rem;
-      color: var(--muted);
-    }
-    .header-meta span { display: flex; align-items: center; gap: .4rem; }
-    .header-meta strong { color: var(--text); }
 
-    /* ── STATS GRID ── */
-    .stats-section {
-      max-width: 1200px;
-      margin: 2.5rem auto;
-      padding: 0 1.5rem;
+    .hero p {
+      font-size: clamp(1.1rem, 2vw, 1.25rem);
+      color: var(--text-secondary);
+      max-width: 700px;
+      margin: 0 auto 3rem;
+      font-weight: 400;
     }
-    .stats-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+
+    /* ── META INFO BADGES ── */
+    .meta-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
       gap: 1rem;
+      margin-top: 2rem;
     }
-    .stat-card {
-      background: var(--surface);
-      border: 1px solid var(--border);
+    
+    .meta-badge {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 0.75rem 1.5rem;
+      background: var(--glass-bg);
+      border: 1px solid var(--glass-border);
       border-radius: 12px;
-      padding: 1.25rem 1.5rem;
+      font-size: 0.95rem;
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      box-shadow: var(--glass-shadow);
+      transition: all 0.3s ease;
+    }
+    
+    .meta-badge:hover {
+      transform: translateY(-2px);
+      border-color: rgba(255,255,255,0.15);
+      background: rgba(255,255,255,0.05);
+    }
+    
+    .meta-badge i { font-style: normal; font-size: 1.2rem; }
+    
+    .meta-badge.countdown {
+      border-color: rgba(236, 72, 153, 0.3);
       position: relative;
       overflow: hidden;
-      transition: transform .2s, border-color .2s;
     }
-    .stat-card:hover { transform: translateY(-3px); border-color: var(--blue); }
-    .stat-card::after {
+    .meta-badge.countdown::after {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: linear-gradient(90deg, transparent, rgba(236, 72, 153, 0.1), transparent);
+      transform: translateX(-100%);
+      animation: shimmer 3s infinite;
+    }
+    .meta-badge.countdown span { color: var(--accent-pink); font-family: 'Outfit', sans-serif; font-weight: 700; }
+
+    /* ── STATS GRID (GLASSMORPHISM) ── */
+    .dashboard-container {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 0 2rem;
+      position: relative;
+      z-index: 10;
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1.5rem;
+      margin-top: -3rem;
+      margin-bottom: 6rem;
+    }
+
+    .stat-card {
+      background: var(--glass-bg);
+      border: 1px solid var(--glass-border);
+      border-radius: 20px;
+      padding: 2rem;
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      box-shadow: var(--glass-shadow);
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+      position: relative;
+      overflow: hidden;
+      animation: slideUpFade 0.8s backwards;
+    }
+    
+    /* Staggered animation delays for stat cards */
+    .stat-card:nth-child(1) { animation-delay: 0.1s; }
+    .stat-card:nth-child(2) { animation-delay: 0.2s; }
+    .stat-card:nth-child(3) { animation-delay: 0.3s; }
+    .stat-card:nth-child(4) { animation-delay: 0.4s; }
+    .stat-card:nth-child(5) { animation-delay: 0.5s; }
+
+    .stat-card::before {
       content: '';
       position: absolute;
       top: 0; left: 0; right: 0;
-      height: 3px;
-      background: var(--accent-color, var(--blue));
-      border-radius: 12px 12px 0 0;
-    }
-    .stat-card .icon { font-size: 1.6rem; margin-bottom: .6rem; }
-    .stat-card .value {
-      font-size: 1.7rem;
-      font-weight: 800;
-      color: var(--text);
-      line-height: 1;
-      margin-bottom: .3rem;
-    }
-    .stat-card .label { font-size: .78rem; color: var(--muted); }
-
-    /* ── SECTION TITLE ── */
-    .section-title {
-      max-width: 1200px;
-      margin: 3rem auto .8rem;
-      padding: 0 1.5rem;
-      display: flex;
-      align-items: center;
-      gap: .8rem;
-    }
-    .section-title h2 {
-      font-size: 1.25rem;
-      font-weight: 700;
-      color: var(--text);
-    }
-    .section-title::after {
-      content: '';
-      flex: 1;
-      height: 1px;
-      background: var(--border);
+      height: 100%;
+      background: radial-gradient(circle at top right, rgba(255,255,255,0.05) 0%, transparent 60%);
+      pointer-events: none;
     }
 
-    /* ── CHART GRID ── */
-    .charts-grid {
-      max-width: 1200px;
-      margin: 0 auto 2rem;
-      padding: 0 1.5rem;
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(520px, 1fr));
-      gap: 1.25rem;
+    .stat-card:hover {
+      transform: translateY(-8px);
+      border-color: rgba(255,255,255,0.15);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.5);
     }
-    .chart-card {
-      background: var(--surface);
-      border: 1px solid var(--border);
+
+    .stat-icon {
+      width: 48px; height: 48px;
       border-radius: 14px;
-      overflow: hidden;
-      transition: transform .2s, box-shadow .2s, border-color .2s;
-    }
-    .chart-card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 12px 40px rgba(0,0,0,.4);
-      border-color: #30363d;
-    }
-    .chart-card.wide { grid-column: 1 / -1; }
-    .chart-header {
       display: flex;
       align-items: center;
-      justify-content: space-between;
-      padding: 1rem 1.25rem .75rem;
-      border-bottom: 1px solid var(--border);
+      justify-content: center;
+      font-size: 1.5rem;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.08);
     }
-    .chart-header h3 { font-size: .95rem; font-weight: 600; }
-    .chart-tag {
-      font-size: .7rem;
+
+    .stat-card.blue .stat-icon { color: var(--accent-blue); background: rgba(59, 130, 246, 0.1); border-color: rgba(59, 130, 246, 0.2); }
+    .stat-card.purple .stat-icon { color: var(--accent-purple); background: rgba(139, 92, 246, 0.1); border-color: rgba(139, 92, 246, 0.2); }
+    .stat-card.amber .stat-icon { color: var(--accent-amber); background: rgba(245, 158, 11, 0.1); border-color: rgba(245, 158, 11, 0.2); }
+    .stat-card.pink .stat-icon { color: var(--accent-pink); background: rgba(236, 72, 153, 0.1); border-color: rgba(236, 72, 153, 0.2); }
+    .stat-card.green .stat-icon { color: var(--accent-green); background: rgba(16, 185, 129, 0.1); border-color: rgba(16, 185, 129, 0.2); }
+
+    .stat-info { display: flex; flex-direction: column; gap: 0.25rem; }
+    
+    .stat-value {
+      font-family: 'Outfit', sans-serif;
+      font-size: 2.25rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      line-height: 1;
+      letter-spacing: -0.02em;
+    }
+    
+    .stat-label {
+      font-size: 0.875rem;
+      color: var(--text-secondary);
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    /* ── SECTION HEADERS ── */
+    .section-header {
+      margin-bottom: 3rem;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0.5rem;
+    }
+    
+    .section-subtitle {
+      color: var(--accent-blue);
+      font-family: 'Outfit', sans-serif;
       font-weight: 600;
-      padding: .2rem .6rem;
-      border-radius: 1rem;
-      background: rgba(44,123,229,.15);
-      color: var(--accent);
-      border: 1px solid rgba(44,123,229,.25);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      font-size: 0.875rem;
     }
-    .chart-body img {
+    
+    .section-title {
+      font-size: 2.5rem;
+      font-weight: 700;
+      margin: 0;
+      background: var(--gradient-text);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    /* ── CHART CARDS ── */
+    .charts-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 2rem;
+      margin-bottom: 6rem;
+    }
+
+    .chart-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-color);
+      border-radius: 24px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: all 0.3s ease;
+    }
+    
+    .chart-card:hover {
+      border-color: rgba(255,255,255,0.15);
+      box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+    }
+    
+    .chart-card.wide { grid-column: 1 / -1; }
+
+    .chart-header-area {
+      padding: 1.5rem 2rem;
+      border-bottom: 1px solid var(--border-color);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: rgba(255,255,255,0.01);
+    }
+    
+    .chart-title-group h3 {
+      font-size: 1.25rem;
+      font-weight: 600;
+      color: var(--text-primary);
+    }
+    
+    .chart-tag {
+      padding: 0.4rem 1rem;
+      border-radius: 100px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      background: rgba(255,255,255,0.05);
+      color: var(--text-secondary);
+      border: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .chart-image-container {
+      padding: 1rem;
+      background: #0f1117; /* Match matplotlib dark mode background */
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    
+    .chart-image-container img {
       width: 100%;
+      height: auto;
+      border-radius: 12px;
       display: block;
     }
-    .chart-insight {
-      padding: .75rem 1.25rem;
-      font-size: .8rem;
-      color: var(--muted);
-      border-top: 1px solid var(--border);
-      line-height: 1.5;
-    }
-    .chart-insight strong { color: var(--accent); }
 
-    /* ── KEY FINDINGS ── */
-    .findings-grid {
-      max-width: 1200px;
-      margin: 0 auto 2rem;
-      padding: 0 1.5rem;
+    .chart-insight-area {
+      padding: 1.5rem 2rem;
+      background: var(--bg-surface-elevated);
+      border-top: 1px solid var(--border-color);
+      font-size: 0.95rem;
+      color: var(--text-secondary);
+      line-height: 1.6;
+    }
+    
+    .chart-insight-area strong {
+      color: var(--text-primary);
+      font-weight: 600;
+    }
+
+    /* ── FINDINGS GRID (BENTO BOX STYLE) ── */
+    .bento-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 1rem;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 1.5rem;
+      margin-bottom: 6rem;
     }
-    .finding-card {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-left: 3px solid var(--accent-color, var(--blue));
-      border-radius: 10px;
-      padding: 1.1rem 1.25rem;
+
+    .bento-card {
+      background: var(--glass-bg);
+      border: 1px solid var(--glass-border);
+      border-radius: 24px;
+      padding: 2.5rem;
+      position: relative;
+      overflow: hidden;
+      transition: all 0.3s;
     }
-    .finding-card .num {
-      font-size: .7rem;
+    
+    .bento-card:hover {
+      background: rgba(25, 25, 25, 0.8);
+      border-color: rgba(255,255,255,0.1);
+      transform: translateY(-5px);
+    }
+    
+    /* Subtle color glows for each finding */
+    .bento-card::before {
+      content: '';
+      position: absolute;
+      top: -50%; right: -50%;
+      width: 200px; height: 200px;
+      border-radius: 50%;
+      filter: blur(80px);
+      opacity: 0.15;
+      z-index: 0;
+      transition: opacity 0.3s;
+    }
+    .bento-card:hover::before { opacity: 0.3; }
+    
+    .bento-card.c1::before { background: var(--accent-blue); }
+    .bento-card.c2::before { background: var(--accent-purple); }
+    .bento-card.c3::before { background: var(--accent-amber); }
+    .bento-card.c4::before { background: var(--accent-pink); }
+    .bento-card.c5::before { background: var(--accent-green); }
+
+    .bento-number {
+      font-family: 'Outfit', sans-serif;
+      font-size: 3.5rem;
+      font-weight: 900;
+      color: rgba(255,255,255,0.05);
+      position: absolute;
+      top: 1rem; right: 1.5rem;
+      line-height: 1;
+      z-index: 1;
+    }
+
+    .bento-content {
+      position: relative;
+      z-index: 2;
+    }
+    
+    .bento-title {
+      font-size: 1.25rem;
       font-weight: 700;
-      color: var(--accent-color, var(--blue));
-      text-transform: uppercase;
-      letter-spacing: .08em;
-      margin-bottom: .35rem;
+      color: var(--text-primary);
+      margin-bottom: 1rem;
+      padding-right: 3rem;
     }
-    .finding-card p { font-size: .88rem; line-height: 1.6; color: var(--muted); }
-    .finding-card p strong { color: var(--text); }
+    
+    .bento-desc {
+      color: var(--text-secondary);
+      font-size: 1rem;
+      line-height: 1.7;
+    }
 
     /* ── FOOTER ── */
-    footer {
-      text-align: center;
-      padding: 2rem 1.5rem;
-      border-top: 1px solid var(--border);
-      color: var(--muted);
-      font-size: .8rem;
-      margin-top: 2rem;
+    .footer-pro {
+      margin-top: 4rem;
+      padding: 4rem 2rem;
+      border-top: 1px solid var(--border-color);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 2rem;
+      background: var(--bg-surface);
     }
-    footer a { color: var(--accent); text-decoration: none; }
-    footer a:hover { text-decoration: underline; }
+    
+    .footer-brand h2 {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 0.5rem;
+      text-align: center;
+    }
+    
+    .footer-brand p {
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+    }
+    
+    .tech-stack {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 0.75rem;
+    }
+    
+    .tech-pill {
+      padding: 0.4rem 1rem;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 100px;
+      font-size: 0.8rem;
+      color: var(--text-secondary);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      transition: color 0.2s, background 0.2s;
+    }
+    .tech-pill:hover {
+      color: var(--text-primary);
+      background: rgba(255,255,255,0.08);
+    }
+    
+    .author-info {
+      text-align: center;
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+      margin-top: 1rem;
+      padding-top: 2rem;
+      border-top: 1px solid rgba(255,255,255,0.05);
+      width: 100%;
+      max-width: 600px;
+    }
+    .author-info a { color: var(--accent-blue); text-decoration: none; }
+    .author-info a:hover { text-decoration: underline; }
 
-    /* ── RESPONSIVE ── */
-    @media (max-width: 620px) {
+    /* ── RESPONSIVE MQ ── */
+    @media (max-width: 1024px) {
       .charts-grid { grid-template-columns: 1fr; }
-      .chart-card.wide { grid-column: 1; }
+    }
+    @media (max-width: 768px) {
+      .hero { padding: 6rem 1.5rem 3rem; }
+      .bento-grid { grid-template-columns: 1fr; }
+      .meta-container { flex-direction: column; align-items: stretch; }
+      .meta-badge { justify-content: center; }
     }
   </style>
 </head>
 <body>
 
-<!-- ════════════════════ HEADER ════════════════════ -->
-<header>
-  <div class="badge">WAP 228 — Project 2</div>
-  <h1>Olist E-Commerce Analysis</h1>
-  <p>End-to-end data analysis of the Brazilian E-Commerce Public Dataset using Python, SQLite &amp; data visualization.</p>
-  <div class="header-meta">
-    <span>🏫 <strong>OSTIM Technical University</strong></span>
-    <span>📅 <strong>Deadline: June 23, 2026</strong></span>
-    <span>🗄️ <strong>SQLite + Python + GitHub</strong></span>
-  </div>
-</header>
+  <!-- HERO SECTION -->
+  <section class="hero">
+    <div class="hero-content">
+      <div class="badge-premium">
+        <span class="dot"></span>
+        Enterprise Analytics Dashboard
+      </div>
+      <h1 class="font-heading">Olist E-Commerce Analysis</h1>
+      <p>Comprehensive end-to-end data pipeline analyzing 100,000+ orders from the Brazilian E-Commerce Public Dataset, uncovering actionable insights for strategic growth.</p>
+      
+      <div class="meta-container">
+        <div class="meta-badge">
+          <i>🏫</i> <span>WAP 228 — OSTIM Technical University</span>
+        </div>
+        <div class="meta-badge">
+          <i>👨‍💻</i> <span>Alhaddad A. Hani</span>
+        </div>
+        <!-- Dynamic Countdown Badge -->
+        <div class="meta-badge countdown" id="countdownBadge">
+          <i>⏱️</i> <span>Due: <span id="timeRemaining">Calculating...</span></span>
+        </div>
+      </div>
+    </div>
+  </section>
 
-<!-- ════════════════════ STATS ════════════════════ -->
-<section class="stats-section">
-  <div class="stats-grid">
-    <div class="stat-card" style="--accent-color: var(--blue)">
-      <div class="icon">📦</div>
-      <div class="value">99,441</div>
-      <div class="label">Total Orders</div>
+  <main class="dashboard-container">
+    
+    <!-- STATS ROW -->
+    <div class="stats-grid">
+      <div class="stat-card blue">
+        <div class="stat-icon">📦</div>
+        <div class="stat-info">
+          <span class="stat-value counter" data-target="99441">0</span>
+          <span class="stat-label">Total Orders</span>
+        </div>
+      </div>
+      
+      <div class="stat-card purple">
+        <div class="stat-icon">🏷️</div>
+        <div class="stat-info">
+          <span class="stat-value counter" data-target="32951">0</span>
+          <span class="stat-label">Unique Products</span>
+        </div>
+      </div>
+      
+      <div class="stat-card amber">
+        <div class="stat-icon">💳</div>
+        <div class="stat-info">
+          <span class="stat-value">73.9%</span>
+          <span class="stat-label">Credit Card Usage</span>
+        </div>
+      </div>
+      
+      <div class="stat-card pink">
+        <div class="stat-icon">🚚</div>
+        <div class="stat-info">
+          <span class="stat-value">13.5d</span>
+          <span class="stat-label">Avg Delivery Time</span>
+        </div>
+      </div>
+      
+      <div class="stat-card green">
+        <div class="stat-icon">⭐</div>
+        <div class="stat-info">
+          <span class="stat-value">4.42</span>
+          <span class="stat-label">Fast Delivery Rating</span>
+        </div>
+      </div>
     </div>
-    <div class="stat-card" style="--accent-color: var(--green)">
-      <div class="icon">👤</div>
-      <div class="value">99,441</div>
-      <div class="label">Unique Customers</div>
-    </div>
-    <div class="stat-card" style="--accent-color: var(--gold)">
-      <div class="icon">🏷️</div>
-      <div class="value">32,951</div>
-      <div class="label">Products</div>
-    </div>
-    <div class="stat-card" style="--accent-color: var(--red)">
-      <div class="icon">🏪</div>
-      <div class="value">3,095</div>
-      <div class="label">Active Sellers</div>
-    </div>
-    <div class="stat-card" style="--accent-color: var(--purple)">
-      <div class="icon">💳</div>
-      <div class="value">73.9%</div>
-      <div class="label">Credit Card Usage</div>
-    </div>
-    <div class="stat-card" style="--accent-color: var(--green)">
-      <div class="icon">⭐</div>
-      <div class="value">4.42★</div>
-      <div class="label">Fast Delivery Score</div>
-    </div>
-  </div>
-</section>
 
-<!-- ════════════════════ CHARTS ════════════════════ -->
-<div class="section-title"><h2>📊 Analysis Charts</h2></div>
+    <!-- CHARTS SECTION -->
+    <div class="section-header">
+      <span class="section-subtitle">Data Visualizations</span>
+      <h2 class="section-title">Performance Metrics</h2>
+    </div>
 
-<div class="charts-grid">
+    <div class="charts-grid">
+      <!-- Chart 1: Revenue -->
+      <div class="chart-card wide">
+        <div class="chart-header-area">
+          <div class="chart-title-group">
+            <h3>Monthly Revenue &amp; Order Volume Trend</h3>
+          </div>
+          <span class="chart-tag">Time Series</span>
+        </div>
+        <div class="chart-image-container">
+          <img src="charts/01_monthly_revenue.png" alt="Monthly Revenue Trend" loading="lazy" />
+        </div>
+        <div class="chart-insight-area">
+          <strong>Insight:</strong> Revenue experienced extreme growth, scaling <strong>10×</strong> from Sep 2016 to Aug 2018. A clear <strong>Black Friday demand spike</strong> occurred in Nov 2017. Order volume scales linearly with revenue.
+        </div>
+      </div>
 
-  <!-- Chart 1 — Full width -->
-  <div class="chart-card wide">
-    <div class="chart-header">
-      <h3>📈 Monthly Revenue &amp; Order Volume (2016–2018)</h3>
-      <span class="chart-tag">Time Series</span>
-    </div>
-    <div class="chart-body"><img src="charts/01_monthly_revenue.png" alt="Monthly Revenue" /></div>
-    <div class="chart-insight">
-      Revenue grew <strong>10×</strong> from Sep 2016 to Aug 2018. Clear <strong>Black Friday spike in Nov 2017</strong>.
-      Both revenue and order count move in near-perfect lockstep, indicating consistent average order value.
-    </div>
-  </div>
+      <!-- Chart 2: Categories -->
+      <div class="chart-card">
+        <div class="chart-header-area">
+          <div class="chart-title-group">
+            <h3>Top 10 Categories by Revenue</h3>
+          </div>
+          <span class="chart-tag">Sales</span>
+        </div>
+        <div class="chart-image-container">
+          <img src="charts/02_top_categories.png" alt="Top Categories" loading="lazy" />
+        </div>
+        <div class="chart-insight-area">
+          <strong>Insight:</strong> <strong>Health &amp; Beauty</strong> leads all categories with R$1.26M, closely followed by Watches &amp; Gifts. The top 5 categories collectively command ~42% of platform revenue.
+        </div>
+      </div>
 
-  <!-- Chart 2 -->
-  <div class="chart-card">
-    <div class="chart-header">
-      <h3>🏆 Top 10 Product Categories</h3>
-      <span class="chart-tag">Revenue</span>
-    </div>
-    <div class="chart-body"><img src="charts/02_top_categories.png" alt="Top Categories" /></div>
-    <div class="chart-insight">
-      <strong>Beleza Saude (Health &amp; Beauty)</strong> leads at R$1.26M.
-      Top 5 categories account for ~42% of all platform revenue.
-    </div>
-  </div>
+      <!-- Chart 3: Geography -->
+      <div class="chart-card">
+        <div class="chart-header-area">
+          <div class="chart-title-group">
+            <h3>Sales Distribution by State</h3>
+          </div>
+          <span class="chart-tag">Geography</span>
+        </div>
+        <div class="chart-image-container">
+          <img src="charts/03_sales_by_state.png" alt="Sales by State" loading="lazy" />
+        </div>
+        <div class="chart-insight-area">
+          <strong>Insight:</strong> <strong>São Paulo (SP)</strong> is the core market, generating 3× more orders than Rio de Janeiro (RJ). The Southeast region dominates, highlighting untapped potential in the North.
+        </div>
+      </div>
 
-  <!-- Chart 3 -->
-  <div class="chart-card">
-    <div class="chart-header">
-      <h3>🗺️ Sales by Brazilian State</h3>
-      <span class="chart-tag">Geographic</span>
-    </div>
-    <div class="chart-body"><img src="charts/03_sales_by_state.png" alt="Sales by State" /></div>
-    <div class="chart-insight">
-      <strong>São Paulo (SP)</strong> dominates with 41,125 orders — <strong>3× more than RJ</strong>.
-      Southeast region drives &gt;60% of all orders. North &amp; Northeast are untapped markets.
-    </div>
-  </div>
+      <!-- Chart 4: Payment -->
+      <div class="chart-card">
+        <div class="chart-header-area">
+          <div class="chart-title-group">
+            <h3>Payment Method Preferences</h3>
+          </div>
+          <span class="chart-tag">Finance</span>
+        </div>
+        <div class="chart-image-container">
+          <img src="charts/04_payment_methods.png" alt="Payment Methods" loading="lazy" />
+        </div>
+        <div class="chart-insight-area">
+          <strong>Insight:</strong> <strong>Credit cards capture 73.9%</strong> of all transactions, strongly driven by Brazil's installment culture (parcelamento). Boleto bancário remains a critical secondary option (19%).
+        </div>
+      </div>
 
-  <!-- Chart 4 -->
-  <div class="chart-card">
-    <div class="chart-header">
-      <h3>💳 Payment Method Distribution</h3>
-      <span class="chart-tag">Preferences</span>
-    </div>
-    <div class="chart-body"><img src="charts/04_payment_methods.png" alt="Payment Methods" /></div>
-    <div class="chart-insight">
-      <strong>Credit card dominates at 73.9%</strong>, reflecting Brazil's installment payment culture.
-      Boleto bancário is second at 19% — a uniquely Brazilian cash-payment method.
-    </div>
-  </div>
+      <!-- Chart 6: Satisfaction -->
+      <div class="chart-card">
+        <div class="chart-header-area">
+          <div class="chart-title-group">
+            <h3>Customer Review Score vs Delivery Speed</h3>
+          </div>
+          <span class="chart-tag">CX Metrics</span>
+        </div>
+        <div class="chart-image-container">
+          <img src="charts/06_ratings_distribution.png" alt="Ratings vs Delivery" loading="lazy" />
+        </div>
+        <div class="chart-insight-area">
+          <strong>Insight:</strong> Direct inverse correlation. Fast deliveries (0-7 days) yield a premium <strong>4.42★</strong> rating, while very slow deliveries (22+ days) crash to a critical <strong>3.12★</strong>.
+        </div>
+      </div>
+      
+      <!-- Chart 7: Price -->
+      <div class="chart-card wide">
+        <div class="chart-header-area">
+          <div class="chart-title-group">
+            <h3>Price Analysis by Category (Avg + Variance)</h3>
+          </div>
+          <span class="chart-tag">Pricing</span>
+        </div>
+        <div class="chart-image-container">
+          <img src="charts/07_price_by_category.png" alt="Price Analysis" loading="lazy" />
+        </div>
+        <div class="chart-insight-area">
+          <strong>Insight:</strong> <strong>PCs command the highest average price</strong> at R$1,098. The immense min-max ranges in categories like Watches &amp; Gifts indicate a highly diverse product mix from entry-level to luxury tiers.
+        </div>
+      </div>
 
-  <!-- Chart 5 -->
-  <div class="chart-card">
-    <div class="chart-header">
-      <h3>🚚 Delivery Time by Category</h3>
-      <span class="chart-tag">Logistics</span>
     </div>
-    <div class="chart-body"><img src="charts/05_delivery_time.png" alt="Delivery Time" /></div>
-    <div class="chart-insight">
-      Heavy/large items (furniture, office) take <strong>25+ days</strong> to deliver.
-      Categories with long delivery times correlate directly with lower customer review scores.
+
+    <!-- STRATEGIC FINDINGS SECTION -->
+    <div class="section-header">
+      <span class="section-subtitle">Executive Summary</span>
+      <h2 class="section-title">Strategic Recommendations</h2>
     </div>
-  </div>
 
-  <!-- Chart 6 -->
-  <div class="chart-card">
-    <div class="chart-header">
-      <h3>⭐ Customer Satisfaction vs Delivery Speed</h3>
-      <span class="chart-tag">Satisfaction</span>
+    <div class="bento-grid">
+      <div class="bento-card c1">
+        <div class="bento-number">01</div>
+        <div class="bento-content">
+          <h3 class="bento-title">Optimise for Q4 Seasonality</h3>
+          <p class="bento-desc">Data confirms a massive Black Friday spike in November. <strong>Recommendation:</strong> Front-load inventory acquisition and scale up marketing spend starting late October to capture peak demand.</p>
+        </div>
+      </div>
+      
+      <div class="bento-card c2">
+        <div class="bento-number">02</div>
+        <div class="bento-content">
+          <h3 class="bento-title">Expand Logistics Infrastructure</h3>
+          <p class="bento-desc">Heavy items (Furniture) take 20+ days to arrive, directly killing review scores. <strong>Recommendation:</strong> Partner with specialized heavy-freight couriers and establish distribution hubs closer to the North/Northeast.</p>
+        </div>
+      </div>
+      
+      <div class="bento-card c3">
+        <div class="bento-number">03</div>
+        <div class="bento-content">
+          <h3 class="bento-title">Prioritise Retention Marketing</h3>
+          <p class="bento-desc">A staggering 97% of users make only a single purchase. <strong>Recommendation:</strong> Deploy automated post-purchase email flows, loyalty point programs, and retargeting ads to increase Customer Lifetime Value (LTV).</p>
+        </div>
+      </div>
+      
+      <div class="bento-card c4">
+        <div class="bento-number">04</div>
+        <div class="bento-content">
+          <h3 class="bento-title">Double Down on Health &amp; Beauty</h3>
+          <p class="bento-desc">Despite a lower average price point, this category generates the highest total revenue due to volume. <strong>Recommendation:</strong> Introduce "Subscribe &amp; Save" models for replenishable cosmetic goods.</p>
+        </div>
+      </div>
     </div>
-    <div class="chart-body"><img src="charts/06_ratings_distribution.png" alt="Ratings" /></div>
-    <div class="chart-insight">
-      <strong>Fast delivery (0–7 days) → 4.42★</strong> vs <strong>very slow (22+ days) → 3.12★</strong>.
-      Delivery speed is the single strongest predictor of customer review score on the platform.
+  </main>
+
+  <footer class="footer-pro">
+    <div class="footer-brand">
+      <h2>WAP 228 Project Submission</h2>
+      <p>OSTIM Technical University • Data Analysis Pipeline</p>
     </div>
-  </div>
-
-  <!-- Chart 7 — Full width -->
-  <div class="chart-card wide">
-    <div class="chart-header">
-      <h3>💰 Price Analysis by Product Category</h3>
-      <span class="chart-tag">Pricing</span>
+    
+    <div class="tech-stack">
+      <div class="tech-pill">🐍 Python 3.10</div>
+      <div class="tech-pill">🗄️ SQLite</div>
+      <div class="tech-pill">🐼 Pandas</div>
+      <div class="tech-pill">📊 Matplotlib</div>
+      <div class="tech-pill">🎨 HTML5/CSS3</div>
     </div>
-    <div class="chart-body"><img src="charts/07_price_by_category.png" alt="Price by Category" /></div>
-    <div class="chart-insight">
-      <strong>PCs &amp; Computers</strong> have the highest avg price at R$1,098.
-      Wide min-max ranges in electronics indicate a mixed product tier — budget accessories to premium devices.
-      Watches &amp; Gifts (Relogios Presentes) show large price variance driven by luxury items.
+    
+    <div class="author-info">
+      Designed &amp; Developed by <strong>Alhaddad A. Hani</strong> <br>
+      Source code available on <a href="https://github.com/alhaddad-a/olist-ecommerce-analysis" target="_blank">GitHub</a>.
     </div>
-  </div>
+  </footer>
 
-</div>
+  <script>
+    // ── Number Counter Animation ──
+    const counters = document.querySelectorAll('.counter');
+    const speed = 200; 
 
-<!-- ════════════════════ KEY FINDINGS ════════════════════ -->
-<div class="section-title"><h2>💡 Key Findings &amp; Recommendations</h2></div>
+    const animateCounters = () => {
+      counters.forEach(counter => {
+        const target = +counter.getAttribute('data-target');
+        const count = +counter.innerText.replace(/,/g, '');
+        const inc = target / speed;
 
-<div class="findings-grid">
-  <div class="finding-card" style="--accent-color: var(--blue)">
-    <div class="num">Finding 01</div>
-    <p><strong>Revenue grew 10× in 2 years.</strong> The Nov 2017 Black Friday peak shows seasonal demand is a major lever. Increase inventory and marketing spend in October–November.</p>
-  </div>
-  <div class="finding-card" style="--accent-color: var(--green)">
-    <div class="num">Finding 02</div>
-    <p><strong>SP/RJ/MG account for &gt;65% of orders.</strong> North and Northeast regions are severely underserved. Regional logistics partnerships could unlock significant new demand.</p>
-  </div>
-  <div class="finding-card" style="--accent-color: var(--gold)">
-    <div class="num">Finding 03</div>
-    <p><strong>Credit card = 73.9% of payments.</strong> Optimise instalment UX and consider adding Buy-Now-Pay-Later options to capture customers who avoid Boleto friction.</p>
-  </div>
-  <div class="finding-card" style="--accent-color: var(--red)">
-    <div class="num">Finding 04</div>
-    <p><strong>Delivery time is the #1 driver of review score.</strong> Fast (0–7d) orders score 4.42★ vs 3.12★ for slow (22+d). Investing in express fulfilment directly improves ratings.</p>
-  </div>
-  <div class="finding-card" style="--accent-color: var(--purple)">
-    <div class="num">Finding 05</div>
-    <p><strong>97% of customers are one-time buyers.</strong> Customer retention is the largest untapped growth lever. Loyalty programmes and re-engagement emails could 2× lifetime value.</p>
-  </div>
-  <div class="finding-card" style="--accent-color: var(--green)">
-    <div class="num">Finding 06</div>
-    <p><strong>Health &amp; Beauty leads revenue</strong> despite not being the highest-priced category — driven by high repeat purchase frequency. It's the ideal category for subscription models.</p>
-  </div>
-</div>
+        if (count < target) {
+          counter.innerText = Math.ceil(count + inc).toLocaleString();
+          setTimeout(animateCounters, 1);
+        } else {
+          counter.innerText = target.toLocaleString();
+        }
+      });
+    }
 
-<!-- ════════════════════ FOOTER ════════════════════ -->
-<footer>
-  <p>
-    <strong>Olist E-Commerce Analysis</strong> &nbsp;|&nbsp;
-    WAP 228 — Workplace Application &nbsp;|&nbsp;
-    OSTIM Technical University &nbsp;|&nbsp;
-    June 2026
-  </p>
-  <p style="margin-top:.5rem">
-    Dataset: <a href="https://www.kaggle.com/datasets/olistbr/brazilian-ecommerce" target="_blank">Olist Brazilian E-Commerce Public Dataset</a>
-    &nbsp;·&nbsp;
-    Stack: Python 3.10 · SQLite · Pandas · Matplotlib · Seaborn · Git
-  </p>
-</footer>
+    // Intersection Observer to trigger counter when visible
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          animateCounters();
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.5 });
 
+    counters.forEach(counter => {
+      observer.observe(counter);
+    });
+
+    // ── Deadline Countdown Timer ──
+    const deadlineDate = new Date("2026-06-23T23:59:59").getTime();
+    const countdownEl = document.getElementById("timeRemaining");
+
+    const updateCountdown = () => {
+      const now = new Date().getTime();
+      const distance = deadlineDate - now;
+
+      if (distance < 0) {
+        countdownEl.innerHTML = "DEADLINE PASSED";
+        countdownEl.style.color = "#ef4444";
+        return;
+      }
+
+      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+      let timeString = "";
+      if (days > 0) timeString += `${days}d `;
+      timeString += `${hours.toString().padStart(2, '0')}h ${minutes.toString().padStart(2, '0')}m ${seconds.toString().padStart(2, '0')}s`;
+      
+      countdownEl.innerHTML = timeString;
+    };
+
+    setInterval(updateCountdown, 1000);
+    updateCountdown(); // initial call
+  </script>
 </body>
 </html>
