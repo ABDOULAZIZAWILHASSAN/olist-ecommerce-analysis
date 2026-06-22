@@ -116,3 +116,69 @@
 2026-06-22 00:28:52,609 [INFO] __main__:   Charts  -> C:\Users\adenh\OneDrive\Desktop\workplace\olist-ecommerce-analysis\output\charts
 2026-06-22 00:28:52,609 [INFO] __main__:   Report  -> C:\Users\adenh\OneDrive\Desktop\workplace\olist-ecommerce-analysis\output\analysis_report.md
 2026-06-22 00:28:52,609 [INFO] __main__: ============================================================
+2026-06-22 01:06:13,991 [INFO] __main__: ============================================================
+2026-06-22 01:06:13,991 [INFO] __main__:   Olist E-Commerce Analysis Pipeline
+2026-06-22 01:06:13,991 [INFO] __main__:   WAP 228 | OSTIM Technical University
+2026-06-22 01:06:13,991 [INFO] __main__: ============================================================
+2026-06-22 01:06:13,991 [INFO] __main__: 
+[Step 1/4] Initialising database: C:\Users\adenh\OneDrive\Desktop\workplace\olist-ecommerce-analysis\database\olist.db
+2026-06-22 01:06:13,992 [INFO] src.database: Connecting to database: C:\Users\adenh\OneDrive\Desktop\workplace\olist-ecommerce-analysis\database\olist.db
+2026-06-22 01:06:14,001 [INFO] src.database: Applying schema from: C:\Users\adenh\OneDrive\Desktop\workplace\olist-ecommerce-analysis\database\schema.sql
+2026-06-22 01:06:14,019 [INFO] src.database: Schema applied successfully.
+2026-06-22 01:06:14,020 [INFO] __main__: 
+[Step 2/4] Loading CSV data from: C:\Users\adenh\OneDrive\Desktop\workplace\olist-ecommerce-analysis\data\raw
+2026-06-22 01:06:14,020 [INFO] src.database:   Loading olist_customers_dataset.csv -> customers
+2026-06-22 01:06:15,006 [INFO] src.database:   Inserted 99441 rows into customers.
+2026-06-22 01:06:15,008 [INFO] src.database:   Loading olist_products_dataset.csv -> products
+2026-06-22 01:06:15,218 [INFO] src.database:   Inserted 32951 rows into products.
+2026-06-22 01:06:15,220 [INFO] src.database:   Loading olist_sellers_dataset.csv -> sellers
+2026-06-22 01:06:15,252 [INFO] src.database:   Inserted 3095 rows into sellers.
+2026-06-22 01:06:15,253 [INFO] src.database:   Loading olist_orders_dataset.csv -> orders
+2026-06-22 01:06:20,709 [INFO] src.database:   Inserted 99441 rows into orders.
+2026-06-22 01:06:20,712 [INFO] src.database:   Loading olist_order_items_dataset.csv -> order_items
+2026-06-22 01:06:23,676 [INFO] src.database:   Inserted 112650 rows into order_items.
+2026-06-22 01:06:23,678 [INFO] src.database:   Loading olist_order_payments_dataset.csv -> order_payments
+2026-06-22 01:06:26,907 [INFO] src.database:   Inserted 103886 rows into order_payments.
+2026-06-22 01:06:26,908 [INFO] src.database:   Loading olist_order_reviews_dataset.csv -> order_reviews
+2026-06-22 01:06:30,433 [INFO] src.database:   Inserted 99224 rows into order_reviews.
+2026-06-22 01:06:30,434 [INFO] __main__: Total rows loaded: 550688
+2026-06-22 01:06:30,434 [INFO] __main__:   customers                              99441 rows
+2026-06-22 01:06:30,435 [INFO] __main__:   products                               32951 rows
+2026-06-22 01:06:30,435 [INFO] __main__:   sellers                                 3095 rows
+2026-06-22 01:06:30,435 [INFO] __main__:   orders                                 99441 rows
+2026-06-22 01:06:30,435 [INFO] __main__:   order_items                           112650 rows
+2026-06-22 01:06:30,435 [INFO] __main__:   order_payments                        103886 rows
+2026-06-22 01:06:30,435 [INFO] __main__:   order_reviews                          99224 rows
+2026-06-22 01:06:30,435 [INFO] __main__: 
+[Step 3/4] Running analysis queries...
+2026-06-22 01:06:30,435 [INFO] src.analysis: Running all analysis queries...
+2026-06-22 01:06:31,291 [INFO] src.analysis: Query 1 (monthly_revenue): 24 rows
+2026-06-22 01:06:33,017 [INFO] src.analysis: Query 2 (top_categories): 10 rows
+2026-06-22 01:06:35,080 [INFO] src.analysis: Query 3 (sales_by_state): 27 rows
+2026-06-22 01:06:35,148 [INFO] src.analysis: Query 4 (payment_methods): 4 rows
+2026-06-22 01:06:37,570 [INFO] src.analysis: Query 5 (delivery_time): 15 rows
+2026-06-22 01:06:38,894 [INFO] src.analysis: Query 6 (ratings_distribution): 4 rows
+2026-06-22 01:06:40,459 [INFO] src.analysis: Query 7 (price_by_category): 15 rows
+2026-06-22 01:06:42,025 [INFO] src.analysis: Query 8 (top_sellers): 10 rows
+2026-06-22 01:06:42,863 [INFO] src.analysis: Query 9 (seasonal_patterns): 12 rows
+2026-06-22 01:06:44,143 [INFO] src.analysis: Query 10 (customer_retention): 9 rows
+2026-06-22 01:06:44,143 [INFO] src.analysis: All analyses complete.
+2026-06-22 01:06:44,150 [INFO] src.database: Database connection closed.
+2026-06-22 01:06:44,151 [INFO] __main__: 
+[Step 4/4] Generating charts and report...
+2026-06-22 01:06:44,151 [INFO] src.visualizations: Generating charts into: C:\Users\adenh\OneDrive\Desktop\workplace\olist-ecommerce-analysis\output\charts
+2026-06-22 01:06:44,640 [INFO] src.visualizations:   Saved chart: 01_monthly_revenue.png
+2026-06-22 01:06:44,944 [INFO] src.visualizations:   Saved chart: 02_top_categories.png
+2026-06-22 01:06:45,253 [INFO] src.visualizations:   Saved chart: 03_sales_by_state.png
+2026-06-22 01:06:45,412 [INFO] src.visualizations:   Saved chart: 04_payment_methods.png
+2026-06-22 01:06:45,853 [INFO] src.visualizations:   Saved chart: 05_delivery_time.png
+2026-06-22 01:06:46,080 [INFO] src.visualizations:   Saved chart: 06_ratings_distribution.png
+2026-06-22 01:06:46,492 [INFO] src.visualizations:   Saved chart: 07_price_by_category.png
+2026-06-22 01:06:46,492 [INFO] src.visualizations: All 7 charts generated successfully.
+2026-06-22 01:06:46,516 [INFO] __main__: Report written: C:\Users\adenh\OneDrive\Desktop\workplace\olist-ecommerce-analysis\output\analysis_report.md
+2026-06-22 01:06:46,517 [INFO] __main__: 
+============================================================
+2026-06-22 01:06:46,517 [INFO] __main__:   Pipeline complete in 32.5 seconds.
+2026-06-22 01:06:46,517 [INFO] __main__:   Charts  -> C:\Users\adenh\OneDrive\Desktop\workplace\olist-ecommerce-analysis\output\charts
+2026-06-22 01:06:46,517 [INFO] __main__:   Report  -> C:\Users\adenh\OneDrive\Desktop\workplace\olist-ecommerce-analysis\output\analysis_report.md
+2026-06-22 01:06:46,517 [INFO] __main__: ============================================================
