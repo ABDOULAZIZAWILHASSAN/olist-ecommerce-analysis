@@ -9,7 +9,6 @@ Execution sequence:
   3. Load raw CSV data files into database tables
   4. Execute all 10 analysis queries
   5. Generate 7 visualisation charts (PNG)
-  6. Write the analysis report (Markdown)
 
 Run from the project root:
     python src/main.py
