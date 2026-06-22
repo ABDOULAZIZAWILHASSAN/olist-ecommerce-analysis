@@ -55,7 +55,6 @@ def setup_logging() -> None:
         format=log_fmt,
         handlers=[
             logging.StreamHandler(sys.stdout),
-            logging.FileHandler(ROOT / "notes" / "pipeline.log", encoding="utf-8"),
         ]
     )
 

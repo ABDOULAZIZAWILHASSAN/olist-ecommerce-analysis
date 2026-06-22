@@ -41,11 +41,8 @@ olist-ecommerce-analysis/
 │   └── visualizations.py        # 7 chart generators
 ├── data/
 │   └── raw/                     # Place the 7 Kaggle CSV files here
-├── output/
-│   └── charts/                  # Generated PNG visualizations (7 files)
-└── notes/
-    ├── project_log.txt          # Development diary
-    └── GITHUB_GUIDE.md          # Git workflow reference
+└── output/
+    └── charts/                  # Generated PNG visualizations (7 files)
 ```
 
 ---
