@@ -42,8 +42,7 @@ olist-ecommerce-analysis/
 ├── data/
 │   └── raw/                     # Place the 7 Kaggle CSV files here
 ├── output/
-│   ├── charts/                  # Generated PNG visualizations (7 files)
-│   └── analysis_report.md       # Auto-generated report with insights
+│   └── charts/                  # Generated PNG visualizations (7 files)
 └── notes/
     ├── project_log.txt          # Development diary
     └── GITHUB_GUIDE.md          # Git workflow reference
@@ -110,7 +109,6 @@ python src/main.py
 2. ✅ Load all 7 CSV files into structured tables
 3. ✅ Execute all 10 analysis queries
 4. ✅ Generate 7 professional charts in `output/charts/`
-5. ✅ Write a comprehensive report to `output/analysis_report.md`
 
 ---
 
@@ -127,14 +125,6 @@ python src/main.py
 | `05_delivery_time.png` | Average delivery days by product category |
 | `06_ratings_distribution.png` | Customer satisfaction score vs delivery speed |
 | `07_price_by_category.png` | Avg/min/max price analysis by category |
-
-### Report (`output/analysis_report.md`)
-
-Auto-generated Markdown report containing:
-- Executive summary
-- Tabular results from each of the 10 queries
-- Key findings and business recommendations
-- Methodology explanation
 
 ---
 
